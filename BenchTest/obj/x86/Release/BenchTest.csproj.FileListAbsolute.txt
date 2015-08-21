@@ -1,0 +1,12 @@
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\obj\x86\Release\ResolveAssemblyReference.cache
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\obj\x86\Release\PATEST.BenchTest.resources
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\obj\x86\Release\PATEST.LossComp.resources
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\obj\x86\Release\PATEST.Properties.Resources.resources
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\obj\x86\Release\GenerateResource.read.1.tlog
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\obj\x86\Release\GenerateResource.write.1.tlog
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\bin\Release\BenchTest.exe
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\bin\Release\BenchTest.pdb
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\bin\Release\VanchipLibrary.dll
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\bin\Release\VanchipLibrary.pdb
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\obj\x86\Release\BenchTest.exe
+D:\_Work folder\Vanchip\Project\BenchTest\BenchTest\obj\x86\Release\BenchTest.pdb
