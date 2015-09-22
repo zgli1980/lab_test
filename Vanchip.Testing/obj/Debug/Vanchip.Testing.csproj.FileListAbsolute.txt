@@ -1,0 +1,275 @@
+D:\_Work folder\Vanchip\Project\BenchTest\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\_Work folder\Vanchip\Project\BenchTest\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\_Work folder\Vanchip\Project\BenchTest\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\_Work folder\Vanchip\Project\BenchTest\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\_Work folder\Vanchip\Project\BenchTest\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+C:\Users\Vanchip\Documents\Vanchip\Project\BenchTest\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+C:\Users\Vanchip\Documents\Vanchip\Project\BenchTest\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+C:\Users\Vanchip\Documents\Vanchip\Project\BenchTest\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Vanchip\Documents\Vanchip\Project\BenchTest\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+C:\Users\Vanchip\Documents\Vanchip\Project\BenchTest\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+J:\BenchTest\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+J:\BenchTest\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+J:\BenchTest\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+J:\BenchTest\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+J:\BenchTest\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+H:\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+H:\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+H:\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+H:\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+H:\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+H:\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+H:\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+C:\Users\Vanchip\Documents\Vanchip\Project\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+C:\Users\Vanchip\Documents\Vanchip\Project\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+C:\Users\Vanchip\Documents\Vanchip\Project\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+C:\Users\Vanchip\Documents\Vanchip\Project\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+C:\Users\Vanchip\Documents\Vanchip\Project\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Vanchip\Documents\Vanchip\Project\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+C:\Users\Vanchip\Documents\Vanchip\Project\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\Douments\Vanchip\Project\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\Douments\Vanchip\Project\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\Douments\Vanchip\Project\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\Douments\Vanchip\Project\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\Douments\Vanchip\Project\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\Douments\Vanchip\Project\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\Douments\Vanchip\Project\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+H:\NEW FOLDER\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+H:\NEW FOLDER\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+H:\NEW FOLDER\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+H:\NEW FOLDER\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+H:\NEW FOLDER\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+H:\NEW FOLDER\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+H:\NEW FOLDER\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+C:\Bench_Test\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+C:\Bench_Test\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+C:\Bench_Test\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+C:\Bench_Test\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+C:\Bench_Test\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+C:\Bench_Test\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+C:\Bench_Test\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\Douments\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\Douments\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\Douments\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\Douments\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\Douments\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\Douments\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\Douments\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+C:\Users\Ace\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+C:\Users\Ace\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+C:\Users\Ace\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+C:\Users\Ace\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+C:\Users\Ace\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+C:\Users\Ace\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+G:\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+G:\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+G:\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+G:\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+G:\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+G:\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+G:\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\新建文件夹\New2\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\新建文件夹\New2\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\新建文件夹\New2\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\新建文件夹\New2\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\新建文件夹\New2\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\新建文件夹\New2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\新建文件夹\New2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+C:\Users\Li\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+C:\Users\Li\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+C:\Users\Li\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+C:\Users\Li\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+C:\Users\Li\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+C:\Users\Li\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+C:\Users\Li\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+C:\Users\Li\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\new2\New2\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\new2\New2\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\new2\New2\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\new2\New2\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\new2\New2\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\new2\New2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\new2\New2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\BenchTest_20131031_03PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\BenchTest_20131031_03PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\BenchTest_20131031_03PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\BenchTest_20131031_03PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\BenchTest_20131031_03PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\New2\BenchTest_20131031_03PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\BenchTest_20131031_03PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+C:\Users\Ace\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+C:\Users\Ace\Documents\Vanchip\Project\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+D:\New2\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Project_BenchTest\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+D:\New2\Project_BenchTest\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+D:\Project_BenchTest_20140225_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\Project_BenchTest_20140225_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\Project_BenchTest_20140225_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\Project_BenchTest_20140225_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\Project_BenchTest_20140225_4PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\Project_BenchTest_20140225_4PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\Project_BenchTest_20140225_4PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\new2\Project_BenchTest\Project_BenchTest_20140425_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\new2\Project_BenchTest\Project_BenchTest_20140425_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\new2\Project_BenchTest\Project_BenchTest_20140425_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\new2\Project_BenchTest\Project_BenchTest_20140425_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\new2\Project_BenchTest\Project_BenchTest_20140425_4PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\new2\Project_BenchTest\Project_BenchTest_20140425_4PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest\Project_BenchTest_20140425_4PM\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+D:\New2\Project_BenchTest\Project_BenchTest_20140425_4PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+D:\New2\Project_BenchTest_20140425_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20140425_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20140425_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Project_BenchTest_20140425_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Project_BenchTest_20140425_5PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\New2\Project_BenchTest_20140425_5PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20140425_5PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20140611_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20140611_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20140611_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Project_BenchTest_20140611_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+D:\New2\Project_BenchTest_20140611_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Project_BenchTest_20140611_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+D:\New2\Project_BenchTest_20140611_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20140611_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\NEW2\Project_BenchTest_20140611_3PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\NEW2\Project_BenchTest_20140611_3PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\NEW2\Project_BenchTest_20140611_3PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\NEW2\Project_BenchTest_20140611_3PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\NEW2\Project_BenchTest_20140611_3PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\NEW2\Project_BenchTest_20140611_3PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\NEW2\Project_BenchTest_20140611_3PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+D:\New2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Vanchip\Production Test\BENCH\Code\Project_BenchTest\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+\\psf\Home\Documents\Vanchip\Production Test\BENCH\Code\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+\\psf\Home\Documents\Vanchip\Production Test\BENCH\Code\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+\\psf\Home\Documents\Vanchip\Production Test\BENCH\Code\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+\\psf\Home\Documents\Vanchip\Production Test\BENCH\Code\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+\\psf\Home\Documents\Vanchip\Production Test\BENCH\Code\Project_BenchTest\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+\\psf\Home\Documents\Vanchip\Production Test\BENCH\Code\Project_BenchTest\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20140827_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20140827_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20140827_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Project_BenchTest_20140827_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+D:\New2\Project_BenchTest_20140827_5PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Project_BenchTest_20140827_5PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+D:\New2\Project_BenchTest_20140827_5PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20140827_5PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\new2\Project_BenchTest_20140828_7PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\new2\Project_BenchTest_20140828_7PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\new2\Project_BenchTest_20140828_7PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\new2\Project_BenchTest_20140828_7PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\new2\Project_BenchTest_20140828_7PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\new2\Project_BenchTest_20140828_7PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\new2\Project_BenchTest_20140828_7PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\Ace\TestCode\Project_BenchTest_20140829_7AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\Ace\TestCode\Project_BenchTest_20140829_7AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\Ace\TestCode\Project_BenchTest_20140829_7AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\Ace\TestCode\Project_BenchTest_20140829_7AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\Ace\TestCode\Project_BenchTest_20140829_7AM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\Ace\TestCode\Project_BenchTest_20140829_7AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\Ace\TestCode\Project_BenchTest_20140829_7AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+E:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+E:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+E:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+E:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+E:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+E:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+E:\Ace\TestCode\Project_BenchTest_20141212_9AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+E:\Ace\TestCode\Project_BenchTest_20141231_12PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+E:\Ace\TestCode\Project_BenchTest_20141231_12PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+E:\Ace\TestCode\Project_BenchTest_20141231_12PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+E:\Ace\TestCode\Project_BenchTest_20141231_12PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+E:\Ace\TestCode\Project_BenchTest_20141231_12PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+E:\Ace\TestCode\Project_BenchTest_20141231_12PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+E:\Ace\TestCode\Project_BenchTest_20141231_12PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+E:\Ace\TestCode\Project_BenchTest_20140205_06PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+E:\Ace\TestCode\Project_BenchTest_20140205_06PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+E:\Ace\TestCode\Project_BenchTest_20140205_06PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+E:\Ace\TestCode\Project_BenchTest_20140205_06PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+E:\Ace\TestCode\Project_BenchTest_20140205_06PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+E:\Ace\TestCode\Project_BenchTest_20140205_06PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+E:\Ace\TestCode\Project_BenchTest_20140205_06PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+E:\Ace\TestCode\Project_BenchTest_20150206_11AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+E:\Ace\TestCode\Project_BenchTest_20150206_11AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+E:\Ace\TestCode\Project_BenchTest_20150206_11AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+E:\Ace\TestCode\Project_BenchTest_20150206_11AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+E:\Ace\TestCode\Project_BenchTest_20150206_11AM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+E:\Ace\TestCode\Project_BenchTest_20150206_11AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+E:\Ace\TestCode\Project_BenchTest_20150206_11AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+\\psf\Home\Downloads\Project_BenchTest_20150206_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+\\psf\Home\Downloads\Project_BenchTest_20150206_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+\\psf\Home\Downloads\Project_BenchTest_20150206_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+\\psf\Home\Downloads\Project_BenchTest_20150206_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\NationalInstruments.Common.Native.dll
+\\psf\Home\Downloads\Project_BenchTest_20150206_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+\\psf\Home\Downloads\Project_BenchTest_20150206_12AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+\\psf\Home\Downloads\Project_BenchTest_20150206_12AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+\\psf\Home\Downloads\Project_BenchTest_20150206_12AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\NEW2\Project_BenchTest_20150209_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\NEW2\Project_BenchTest_20150209_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\NEW2\Project_BenchTest_20150209_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\NEW2\Project_BenchTest_20150209_12AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\NEW2\Project_BenchTest_20150209_12AM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\NEW2\Project_BenchTest_20150209_12AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\NEW2\Project_BenchTest_20150209_12AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\NEW2\Project_BenchTest_20150226_10AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\NEW2\Project_BenchTest_20150226_10AM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\NEW2\Project_BenchTest_20150226_10AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\NEW2\Project_BenchTest_20150226_10AM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\NEW2\Project_BenchTest_20150226_10AM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\NEW2\Project_BenchTest_20150226_10AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\NEW2\Project_BenchTest_20150226_10AM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20150304_04PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20150304_04PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20150304_04PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Project_BenchTest_20150304_04PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Project_BenchTest_20150304_04PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\New2\Project_BenchTest_20150304_04PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20150304_04PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20150318_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20150318_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20150318_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Project_BenchTest_20150318_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Project_BenchTest_20150318_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\New2\Project_BenchTest_20150318_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20150318_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20150609_2PM_2\Project_BenchTest_20150609_2PM_2\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20150609_2PM_2\Project_BenchTest_20150609_2PM_2\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20150609_2PM_2\Project_BenchTest_20150609_2PM_2\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Project_BenchTest_20150609_2PM_2\Project_BenchTest_20150609_2PM_2\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Project_BenchTest_20150609_2PM_2\Project_BenchTest_20150609_2PM_2\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\New2\Project_BenchTest_20150609_2PM_2\Project_BenchTest_20150609_2PM_2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20150609_2PM_2\Project_BenchTest_20150609_2PM_2\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20150624_2PM\Project_BenchTest_20150624_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20150624_2PM\Project_BenchTest_20150624_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\Vanchip.Testing.pdb
+D:\New2\Project_BenchTest_20150624_2PM\Project_BenchTest_20150624_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.dll
+D:\New2\Project_BenchTest_20150624_2PM\Project_BenchTest_20150624_2PM\Vanchip Library\Vanchip.Testing\bin\Debug\LumenWorks.Framework.IO.xml
+D:\New2\Project_BenchTest_20150624_2PM\Project_BenchTest_20150624_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\ResolveAssemblyReference.cache
+D:\New2\Project_BenchTest_20150624_2PM\Project_BenchTest_20150624_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.dll
+D:\New2\Project_BenchTest_20150624_2PM\Project_BenchTest_20150624_2PM\Vanchip Library\Vanchip.Testing\obj\Debug\Vanchip.Testing.pdb
