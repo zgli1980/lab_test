@@ -5,3 +5,17 @@ D:\Douments\Vanchip\Project\Vanchip.Testing\bin\x86\Debug\LumenWorks.Framework.I
 D:\Douments\Vanchip\Project\Vanchip.Testing\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\Douments\Vanchip\Project\Vanchip.Testing\obj\x86\Debug\Vanchip.Testing.dll
 D:\Douments\Vanchip\Project\Vanchip.Testing\obj\x86\Debug\Vanchip.Testing.pdb
+\\Mac\Home\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\obj\x86\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+\\Mac\Home\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\obj\x86\Debug\Vanchip.Testing.dll
+\\Mac\Home\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\obj\x86\Debug\Vanchip.Testing.pdb
+\\Mac\Home\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\bin\x86\Debug\Vanchip.Testing.dll
+\\Mac\Home\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\bin\x86\Debug\Vanchip.Testing.pdb
+\\Mac\Home\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\bin\x86\Debug\LumenWorks.Framework.IO.dll
+\\Mac\Home\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\bin\x86\Debug\LumenWorks.Framework.IO.xml
+\\Mac\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\bin\x86\Debug\Vanchip.Testing.dll
+\\Mac\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\bin\x86\Debug\Vanchip.Testing.pdb
+\\Mac\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\bin\x86\Debug\LumenWorks.Framework.IO.dll
+\\Mac\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\bin\x86\Debug\LumenWorks.Framework.IO.xml
+\\Mac\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\obj\x86\Debug\Vanchip.Testing.csprojResolveAssemblyReference.cache
+\\Mac\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\obj\x86\Debug\Vanchip.Testing.dll
+\\Mac\Dropbox\Documents\Vanchip\github\lab_test\Vanchip.Testing\obj\x86\Debug\Vanchip.Testing.pdb

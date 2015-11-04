@@ -22,10 +22,11 @@ namespace Bench_Test
     public partial class Mipi : Form
     {
         bool isgpib = true;
-        int intPoint = 0;
-        double dblShift = 0;
         double dblFreq = 0.0;
         double dblVolt = 1.8;
+        int intPoint = 0;
+        double dblShift = 0;
+        double dblDuty = 0;
 
         int GPIB_Addr = Instruments_address._12;
         string VISA_str = Instruments_VISA.Arb_33522A;
@@ -520,6 +521,7 @@ namespace Bench_Test
             dblVolt = Convert.ToDouble(tbxVolt.Text);
             intPoint = Convert.ToInt16(tbxPoint.Text);
             dblShift = Convert.ToDouble(tbxShift.Text);
+            dblDuty = Convert.ToDouble(tbxDuty.Text);
             USID = tbxUSID.Text;
 
             // Enable Extended Register Write
@@ -738,16 +740,17 @@ namespace Bench_Test
         {
             //int shift_point = (int)Math.Ceiling((double)intPoint / 5) + intShift;
 
+            double SRate = dblFreq * intPoint * 2E6;
             int shift_point = (int)Math.Ceiling((double)(dblShift*10));
             int total_point = (strCmd.Length + 4) * intPoint;
-            double SRate = dblFreq * intPoint * 2E6;
-
+            int intHigh = Convert.ToInt32(intPoint * 2 * dblDuty);
+            int intLow = intPoint * 2 - intHigh;
 
             #region Build Mipi Array
             StringBuilder sbClock = new StringBuilder();
             StringBuilder sbData = new StringBuilder();
 
-            //// Prefix 2*point
+            #region //// Prefix 2*point  一个周期
             for (int i = 1; i <= intPoint * 2; i++)
             {
                 if (shift_point > 0)
@@ -772,9 +775,11 @@ namespace Bench_Test
                     sbClock.Append(",");
                     sbClock.Append(0);
                 }
-                
+
             }
-            //// Data
+            #endregion 
+
+            #region //// Data
             for (int j = 0; j < strCmd.Length; j++)
             {
                 for (int i = 1; i <= intPoint * 2; i++)
@@ -785,12 +790,12 @@ namespace Bench_Test
                         sbClock.Append(",");
                         sbClock.Append(0);
                     }
-                    else if (i <= intPoint)
+                    else if (i <= intHigh)
                     {
                         sbClock.Append(",");
                         sbClock.Append(1);
                     }
-                    else if (i > intPoint)
+                    else if (i > intHigh)
                     {
                         sbClock.Append(",");
                         sbClock.Append(0);
@@ -800,15 +805,17 @@ namespace Bench_Test
                     sbData.Append(strCmd[j]);
                 }
             }
-            //// BP signal 
+            #endregion
+
+            #region //// BP signal
             for (int i = 1; i <= intPoint * 2; i++)
             {
-                if (i <= intPoint)
+                if (i <= intHigh)
                 {
                     sbClock.Append(",");
                     sbClock.Append(1);
                 }
-                else if (i > intPoint)
+                else if (i > intHigh)
                 {
                     sbClock.Append(",");
                     sbClock.Append(0);
@@ -816,7 +823,9 @@ namespace Bench_Test
                 sbData.Append(",");
                 sbData.Append(0);
             }
-            //// Suffix 2*point
+            #endregion
+
+            #region //// Suffix 2*point
             for (int i = 1; i <= intPoint * 2 + shift_point; i++)
             {
                 sbClock.Append(",");
@@ -827,6 +836,7 @@ namespace Bench_Test
                     sbData.Append(0);
                 }
             }
+            #endregion
 
             #endregion Build Mipi Array
 
@@ -840,6 +850,7 @@ namespace Bench_Test
 
             SendCmd("SOUR1:FUNC:ARB:SRATE " + SRate.ToString());
             //SendCmd("SOUR1:FUNC:ARB:FILTER OFF");
+            SendCmd("SOUR1:FUNC:ARB:FILTER STEP");
             SendCmd("OUTP1:LOAD INF");
             SendCmd("SOUR1:VOLT " + dblVolt.ToString());
             SendCmd("SOUR1:VOLT:OFFS 0");
@@ -856,6 +867,7 @@ namespace Bench_Test
 
             SendCmd("SOUR2:FUNC:ARB:SRATE " + SRate.ToString());
             //SendCmd("SOUR2:FUNC:ARB:FILTER OFF");
+            SendCmd("SOUR2:FUNC:ARB:FILTER STEP");
             SendCmd("OUTP2:LOAD INF");
             SendCmd("SOUR2:VOLT " + dblVolt.ToString());
             SendCmd("SOUR2:VOLT:OFFS 0");
@@ -1029,6 +1041,11 @@ namespace Bench_Test
                 gpib.Send(GPIB_Addr, strCmd);
             else
                 visa.Send(strCmd);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
 
 
