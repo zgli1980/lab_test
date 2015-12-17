@@ -844,3 +844,22 @@ D:\New2\lab_test\BenchTest\obj\x86\Debug\Bench_Test.Start.resources
 D:\New2\lab_test\BenchTest\obj\x86\Debug\Bench_Test.SweepTest.resources
 D:\New2\lab_test\BenchTest\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
 D:\New2\lab_test\BenchTest\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+E:\Ace\lab_test\BenchTest\bin\Debug\Bench Test.exe.config
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench Test.exe
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench Test.pdb
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.BenchTest.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.Datalog.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.DataMergeTool.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.LossComp.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.Mipi.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.NewLossComp.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.Properties.Resources.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.Start.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\Bench_Test.SweepTest.resources
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\ResGen.read.1.tlog
+E:\Ace\lab_test\BenchTest\obj\x86\Debug\ResGen.write.1.tlog
+E:\Ace\lab_test\BenchTest\bin\Debug\Bench Test.exe
+E:\Ace\lab_test\BenchTest\bin\Debug\Bench Test.pdb
+E:\Ace\lab_test\BenchTest\bin\Debug\Vanchip.Testing.dll
+E:\Ace\lab_test\BenchTest\bin\Debug\Vanchip.Testing.pdb

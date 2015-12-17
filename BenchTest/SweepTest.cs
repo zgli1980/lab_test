@@ -11,6 +11,7 @@
 ///Rev:2015-02-06      Add Mipi for All Mode change Mod trigger mode`                      AceLi       2015-02-06
 ///Rev:2015-04-23      Change GMSK power servo function                                    AceLi       2015-04-23
 ///Rev:2015-06-24      Fix SH1 Edge power issue                                            AceLi       2015-06-24
+///Rev:2015-12-17      Add Linear GSMK test                                                AceLi       2015-12-17
      
 
 using System;
@@ -60,8 +61,8 @@ namespace Bench_Test
         private string[] Array_Limit_Row = new string[4];
 
 
-        private DataTable dtCWHB = new DataTable();
         private DataTable dtCWLB = new DataTable();
+        private DataTable dtCWHB = new DataTable();
         private DataTable dtEDGEHB = new DataTable();
         private DataTable dtEDGELB = new DataTable();
         private DataTable dtTDSCDMA = new DataTable();
@@ -72,6 +73,8 @@ namespace Bench_Test
         private DataTable dtLTEFDD_B2 = new DataTable();
         private DataTable dtCDMA = new DataTable();
         private DataTable dtEVDO = new DataTable();
+        private DataTable dtLCWLB = new DataTable();
+        private DataTable dtLCWHB = new DataTable();
 
         private bool isDataSaved = false;
         private bool isCWHBTested = false;
@@ -86,6 +89,8 @@ namespace Bench_Test
         private bool isLTEFDD_B2_Tested = false;
         private bool isCDMA_Tested = false;
         private bool isEVDO_Tested = false;
+        private bool isLCWHBTested = false;
+        private bool isLCWLBTested = false;
 
         private bool td_hsdpa = false;
         private bool ext_har = false;
@@ -339,6 +344,55 @@ namespace Bench_Test
 
             #endregion --- CDMA & EVDO ---
 
+            #region --- LINEAR GMSK LB ---
+            this.dtLCWLB.Columns.Add(new DataColumn("#", typeof(int)));
+            this.dtLCWLB.Columns.Add(new DataColumn("Frequency(MHz)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("Target_Pout(dBm)", typeof(string)));
+            this.dtLCWLB.Columns.Add(new DataColumn("Pout(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("Pin(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("Gain(dB)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("ICC(mA)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("PAE(%)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("2fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("3fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("4fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("5fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("6fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("7fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("8fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("9fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("10fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("11fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("12fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("13fo(dBm)", typeof(double)));
+            this.dtLCWLB.Columns.Add(new DataColumn("14fo(dBm)", typeof(double)));
+            //this.dtLCWLB.PrimaryKey = new DataColumn[] { dtLCWLB.Columns["#"] };
+            //this.dtLCWLBData.Columns["#"].AutoIncrement = true;
+            //this.dtLCWLBData.Columns["#"].AutoIncrementSeed = 1;
+            //this.dtLCWLBData.Columns["#"].AutoIncrementStep = 1;
+            #endregion --- LINEAR GMSK LB ---
+
+            #region --- LINEAR GMSK HB ---
+            this.dtLCWHB.Columns.Add(new DataColumn("#", typeof(int)));
+            this.dtLCWHB.Columns.Add(new DataColumn("Frequency(MHz)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("Target_Pout(dBm)", typeof(string)));
+            this.dtLCWHB.Columns.Add(new DataColumn("Pout(dBm)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("Pin(dBm)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("Gain(dB)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("ICC(mA)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("PAE(%)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("2fo(dBm)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("3fo(dBm)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("4fo(dBm)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("5fo(dBm)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("6fo(dBm)", typeof(double)));
+            this.dtLCWHB.Columns.Add(new DataColumn("7fo(dBm)", typeof(double)));
+            //this.dtLCWHB.PrimaryKey = new DataColumn[] { dtCWHB.Columns["#"] };
+            //this.dtLCWHB.Columns["#"].AutoIncrement = true;
+            //this.dtLCWHB.Columns["#"].AutoIncrementSeed = 1;
+            //this.dtLCWHB.Columns["#"].AutoIncrementStep = 1;
+            #endregion --- LINEAR GMSK HB ---
+
             #endregion Initialize  Datatable
 
             #region Intialize Radio Button
@@ -364,6 +418,8 @@ namespace Bench_Test
             rbnLTEFDDHB.Text = TestSetting.MODE_LTEFDD_HB;
             rbnCDMA.Text = TestSetting.MODE_CDMA;
             rbnEVDo.Text = TestSetting.MODE_EVDO;
+            rbnLCWLB.Text = TestSetting.MODE_LCW_LB;
+            rbnLCWHB.Text = TestSetting.MODE_LCW_HB;
 
             rbnCWLB.Checked = true;
 
@@ -382,6 +438,8 @@ namespace Bench_Test
                 }
             }
             #endregion Intialize Setting TextBox Change
+
+            //if (true) return;
 
             #region Initialize instruments
 
@@ -490,7 +548,7 @@ namespace Bench_Test
   
         private void SweepTest_Load(object sender, EventArgs e)
         {
-            lblCopyRight.Text = "Copyright @ 2011 Vanchip Rev:2015-06-24";
+            lblCopyRight.Text = "Copyright @ 2011 Vanchip Rev:2015-12-17";
             this.Text = "SweepTest *** " + Program.Location.ToString();
 
             #region *** Read Loss Comp Data ***
@@ -606,6 +664,8 @@ namespace Bench_Test
                 rbnEDGEHB.Enabled = true;
                 rbnTDSCDMA.Enabled = true;
                 rbnWCDMA.Enabled = true;
+                rbnLCWLB.Enabled = true;
+                rbnLCWHB.Enabled = true;
             }
             #endregion BJ_1
 
@@ -617,6 +677,8 @@ namespace Bench_Test
                 rbnEDGELB.Enabled = true;
                 rbnEDGEHB.Enabled = true;
                 rbnTDSCDMA.Enabled = true;
+                rbnLCWLB.Enabled = true;
+                rbnLCWHB.Enabled = true;
 
             }
             #endregion SH1
@@ -638,6 +700,8 @@ namespace Bench_Test
                 rbnLTETDD_B40.Enabled = true;
                 rbnLTEFDDLB.Enabled = true;
                 rbnLTEFDDHB.Enabled = true;
+                rbnLCWLB.Enabled = true;
+                rbnLCWHB.Enabled = true;
 
             }
             #endregion SH_2
@@ -654,6 +718,8 @@ namespace Bench_Test
                 //rbnCDMA.Enabled = true;
                 //rbnEVDo.Enabled = true;
                 rbnWCDMA.Enabled = true;
+                rbnLCWLB.Enabled = true;
+                rbnLCWHB.Enabled = true;
 
             }
             #endregion SH_3
@@ -673,6 +739,8 @@ namespace Bench_Test
                 rbnLTETDD_B40.Enabled = true;
                 rbnLTEFDDLB.Enabled = true;
                 rbnLTEFDDHB.Enabled = true;
+                rbnLCWLB.Enabled = true;
+                rbnLCWHB.Enabled = true;
 
             }
             #endregion SH_3
@@ -693,6 +761,7 @@ namespace Bench_Test
                 dgvSweepResult.FirstDisplayedScrollingRowIndex = e.RowIndex;
             }
         }
+
 
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -862,7 +931,8 @@ namespace Bench_Test
             RadioButton rbnMode = sender as RadioButton;
             if (rbnMode.Checked == false) return;
 
-            if (rbnMode.Text != TestSetting.MODE_CW_LB && rbnMode.Text != TestSetting.MODE_CW_HB)
+            if (rbnMode.Text != TestSetting.MODE_CW_LB && rbnMode.Text != TestSetting.MODE_CW_HB &&
+                rbnMode.Text != TestSetting.MODE_LCW_LB && rbnMode.Text != TestSetting.MODE_LCW_HB)
             {
                 cbxexthar.Visible = false;
             }
@@ -1964,6 +2034,195 @@ namespace Bench_Test
                         #endregion *** Waveform ***
                         break;
                     }
+                case TestSetting.MODE_LCW_LB:
+                    {
+                        #region *** Assign LCW LB Parameter Setting ***
+                        bool firstfreq = true;
+                        TestSetting.LEVEL_VCC = TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_VCC];
+                        TestSetting.LEVEL_TXEN = TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_TXEN];
+                        TestSetting.LEVEL_GPCTRL = TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_GPCTRL];
+                        TestSetting.LEVEL_START = TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_START];
+                        TestSetting.LEVEL_STOP = TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_STOP];
+                        TestSetting.LEVEL_STEP = TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_STEP];
+                        TestSetting.LEVEL_PIN_VRAMP = TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_PIN_VRAMP];
+
+                        
+                        lblPin_Vramp.Text = "Vramp Voltage (V)";
+                        lblPin_Vramp.Text = "RF Pin(dBm)";
+                        lblStep.Text = "GMSK Target Power (dBm)";
+
+                        tbxVCC.Text = TestSetting.LEVEL_VCC.ToString();
+                        tbxVBAT.Text = TestSetting.NA;
+                        tbxTXEN.Text = TestSetting.LEVEL_TXEN.ToString();
+                        tbxGPCTRL.Text = TestSetting.LEVEL_GPCTRL.ToString();
+                        tbxStart.Text = TestSetting.LEVEL_START.ToString();
+                        tbxStop.Text = TestSetting.LEVEL_STOP.ToString();
+                        tbxStep.Text = TestSetting.LEVEL_STEP.ToString();
+                        tbxPin_Vramp.Text = TestSetting.LEVEL_PIN_VRAMP.ToString();
+
+                        tbxVBAT.Enabled = false;
+                        tbxPin_Vramp.Enabled = true;
+                        tbxTXEN.Enabled = true;
+
+                        TestSetting.FREQLIST = new List<double>(TestSetting.FREQ_LCW_LB.Keys);
+
+                        foreach (var freq in TestSetting.FREQLIST)
+                        {
+                            if (firstfreq)
+                            {
+                                tbxFreqList.Text = freq.ToString();
+                                firstfreq = false;
+                            }
+                            else
+                            {
+                                tbxFreqList.Text += ",";
+                                tbxFreqList.Text += freq.ToString();
+                            }
+                        }
+
+                        #endregion
+
+                        #region *** Initialize GridView ***
+
+                        this.dgvSweepResult.DataSource = null;
+                        this.dgvSweepResult.DataSource = this.dtLCWLB;
+
+                        this.dgvSweepResult.Columns["#"].Width = 35;
+                        this.dgvSweepResult.Columns["Frequency(MHz)"].Width = 110;
+                        this.dgvSweepResult.Columns["Target_Pout(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["Pout(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["Pin(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["Gain(dB)"].Width = 75;
+                        this.dgvSweepResult.Columns["ICC(mA)"].Width = 75;
+                        this.dgvSweepResult.Columns["PAE(%)"].Width = 75;
+                        this.dgvSweepResult.Columns["2fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["3fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["4fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["5fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["6fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["7fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["8fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["9fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["10fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["11fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["12fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["13fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["14fo(dBm)"].Width = 75;
+
+                        //dgvSweepResult.ScrollBars = ScrollBars.Vertical;
+                        dgvSweepResult.ScrollBars = ScrollBars.Both;
+                        dgvSweepResult.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                        foreach (DataGridViewTextBoxColumn dcTmp in dgvSweepResult.Columns)
+                        {
+                            dcTmp.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+
+                        this.dgvSweepResult.AllowUserToAddRows = false;
+                        this.dgvSweepResult.RowHeadersVisible = false;
+                        this.dgvSweepResult.ReadOnly = true;
+
+
+                        #endregion Initialize GridView
+
+                        #region *** Waveform ***
+                        cbxWaveform.Enabled = false;
+                        cbxWaveform.Items.Clear();
+                        cbxWaveform.Items.Add("N/A");
+                        cbxWaveform.SelectedIndex = 0;
+                        #endregion *** Waveform ***
+                        break;
+                    }
+                case TestSetting.MODE_LCW_HB:
+                    {
+                        #region *** Assign CW HB Parameter Setting ***
+                        bool firstfreq = true;
+                        TestSetting.LEVEL_VCC = TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_VCC];
+                        TestSetting.LEVEL_TXEN = TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_TXEN];
+                        TestSetting.LEVEL_GPCTRL = TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_GPCTRL];
+                        TestSetting.LEVEL_START = TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_START];
+                        TestSetting.LEVEL_STOP = TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_STOP];
+                        TestSetting.LEVEL_STEP = TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_STEP];
+                        TestSetting.LEVEL_PIN_VRAMP = TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_PIN_VRAMP];
+
+
+                        lblPin_Vramp.Text = "Vramp Voltage (V)";
+                        lblPin_Vramp.Text = "RF Pin(dBm)";
+                        lblStep.Text = "GMSK Target Power (dBm)";
+
+                        tbxVCC.Text = TestSetting.LEVEL_VCC.ToString();
+                        tbxVBAT.Text = TestSetting.NA;
+                        tbxTXEN.Text = TestSetting.LEVEL_TXEN.ToString();
+                        tbxGPCTRL.Text = TestSetting.LEVEL_GPCTRL.ToString();
+                        tbxStart.Text = TestSetting.LEVEL_START.ToString();
+                        tbxStop.Text = TestSetting.LEVEL_STOP.ToString();
+                        tbxStep.Text = TestSetting.LEVEL_STEP.ToString();
+                        tbxPin_Vramp.Text = TestSetting.LEVEL_PIN_VRAMP.ToString();
+
+                        tbxVBAT.Enabled = false;
+                        tbxPin_Vramp.Enabled = true;
+                        tbxTXEN.Enabled = true;
+
+                        TestSetting.FREQLIST = new List<double>(TestSetting.FREQ_LCW_HB.Keys);
+
+                        foreach (var freq in TestSetting.FREQLIST)
+                        {
+                            if (firstfreq)
+                            {
+                                tbxFreqList.Text = freq.ToString();
+                                firstfreq = false;
+                            }
+                            else
+                            {
+                                tbxFreqList.Text += ",";
+                                tbxFreqList.Text += freq.ToString();
+                            }
+                        }
+                        #endregion
+
+                        #region *** Initialize GridView ***
+
+                        this.dgvSweepResult.DataSource = null;
+                        this.dgvSweepResult.DataSource = this.dtLCWHB;
+
+                        this.dgvSweepResult.Columns["#"].Width = 35;
+                        this.dgvSweepResult.Columns["Frequency(MHz)"].Width = 110;
+                        this.dgvSweepResult.Columns["Target_Pout(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["Pout(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["Pin(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["Gain(dB)"].Width = 75;
+                        this.dgvSweepResult.Columns["ICC(mA)"].Width = 75;
+                        this.dgvSweepResult.Columns["PAE(%)"].Width = 75;
+                        this.dgvSweepResult.Columns["2fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["3fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["4fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["5fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["6fo(dBm)"].Width = 75;
+                        this.dgvSweepResult.Columns["7fo(dBm)"].Width = 75;
+
+                        dgvSweepResult.ScrollBars = ScrollBars.Both;
+                        dgvSweepResult.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                        foreach (DataGridViewTextBoxColumn dcTmp in dgvSweepResult.Columns)
+                        {
+                            dcTmp.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+
+                        this.dgvSweepResult.AllowUserToAddRows = false;
+                        this.dgvSweepResult.RowHeadersVisible = false;
+                        this.dgvSweepResult.ReadOnly = true;
+
+
+                        #endregion Initialize GridView
+
+                        #region *** Waveform ***
+                        cbxWaveform.Enabled = false;
+                        cbxWaveform.Items.Clear();
+                        cbxWaveform.Items.Add("N/A");
+                        cbxWaveform.SelectedIndex = 0;
+                        #endregion *** Waveform ***
+                        break;
+                    }
                 default:
                     {
                         break;
@@ -2199,11 +2458,69 @@ namespace Bench_Test
             }
 
         }
+        private void SetVEN(Arb_Channel Channel, double dblValue_in_Volts, double dblValue_in_Hz, bool isDC)
+        {
+            double dblDCOffset = 0;
+            try
+            {
+                #region BJ_1 & SH_1
+                if (Program.Location == LocationList.BJ_1 ||
+                    Program.Location == LocationList.SH_1)
+                {
+                    if (isDC)
+                    {
+                        util.Wait(10);
+                        _Arb_33522A_USB.SetDC(Channel, dblValue_in_Volts);
+                        util.Wait(10);
+                    }
+                    else
+                    {
+                        _Arb_33522A_USB.SetArbOut(Arb_Waveform_Type.Pulse, Channel, dblValue_in_Hz, dblValue_in_Volts, dblDCOffset, 25);
+                    }
+                }
+                #endregion BJ_1
+
+                #region SH2 & SH3 & SH4
+                else if (Program.Location == LocationList.SH_2 ||
+                         Program.Location == LocationList.SH_3 ||
+                         Program.Location == LocationList.SH_4)
+                {
+                    if (isDC)
+                    {
+                        util.Wait(10);
+                        _Arb_33522A.SetDC(Channel, dblValue_in_Volts);
+                        util.Wait(10);
+                    }
+                    else
+                    {
+                        //_Arb_33522A.Initialize(200);
+                        _Arb_33522A.SetArbOut(Arb_Waveform_Type.Square, Channel, dblValue_in_Hz, dblValue_in_Volts, dblDCOffset, 25, false);
+                        util.Wait(10);
+                        _Arb_33522A.SYNC_OUT(Channel, Output.ON);
+                        util.Wait(10);
+                        _Arb_33522A.SetBurstModeOFF();
+                        //_Arb_33522A.SetBurstTrig(Channel, 1.9, 999);
+                        //util.Wait(10);
+                    }
+                }
+                #endregion SH_2 & SH3
+                else
+                {
+                    throw new Exception("Bad Location");
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message.ToString();
+            }
+
+        }
 
         private void SaveData()
         {
             if (isCWLBTested || isCWHBTested || isEDGELBTested || isEDGEHBTested || isTDSCDMATested || isWCDMATested ||
-                isLTETDD_B38_Tested || isLTETDD_B40_Tested || isLTEFDD_B1_Tested || isLTEFDD_B2_Tested || isCDMA_Tested || isEVDO_Tested)
+                isLTETDD_B38_Tested || isLTETDD_B40_Tested || isLTEFDD_B1_Tested || isLTEFDD_B2_Tested || isCDMA_Tested || isEVDO_Tested ||
+                isLCWLBTested || isLCWHBTested )
             {
                 #region --- File diaglog ---
                 // Displays a SaveFileDialog so the user can save the file
@@ -2572,6 +2889,63 @@ namespace Bench_Test
                 }
                 #endregion --- EVDO ---
 
+                #region --- Linear GMSK LB ---
+                //Build and save Linear CW LB test data title
+                if (isLCWLBTested)
+                {
+                    sbTitle = new StringBuilder();
+                    for (int i = 0; i < dtLCWLB.Columns.Count; i++)
+                    {
+                        if (i != 0)
+                            sbTitle.Append(',');
+                        sbTitle.Append(dtLCWLB.Columns[i].ColumnName);
+                    }
+                    swData.WriteLine(sbTitle.ToString());
+
+                    //Build and save LB test data 
+                    foreach (DataRow drTemp in dtLCWLB.Rows)
+                    {
+                        StringBuilder sbData = new StringBuilder();
+                        for (int i = 0; i < dtLCWLB.Columns.Count; i++)
+                        {
+                            if (i != 0)
+                                sbData.Append(',');
+                            sbData.Append(drTemp[i].ToString());
+                        }
+                        swData.WriteLine(sbData.ToString());
+                    }
+                }
+                #endregion --- Linear GMSK LB ---
+
+                #region --- Linear GMSK HB ---
+                if (isLCWHBTested)
+                {
+                    sbTitle = new StringBuilder();
+                    sbTitle.AppendLine();
+                    //Build and save Linear CW HB test data title
+                    for (int i = 0; i < dtLCWHB.Columns.Count; i++)
+                    {
+                        if (i != 0)
+                            sbTitle.Append(',');
+                        sbTitle.Append(dtLCWHB.Columns[i].ColumnName);
+                    }
+                    swData.WriteLine(sbTitle.ToString());
+
+                    //Build and save HB test data 
+                    foreach (DataRow drTemp in dtLCWHB.Rows)
+                    {
+                        StringBuilder sbData = new StringBuilder();
+                        for (int i = 0; i < dtLCWHB.Columns.Count; i++)
+                        {
+                            if (i != 0)
+                                sbData.Append(',');
+                            sbData.Append(drTemp[i].ToString());
+                        }
+                        swData.WriteLine(sbData.ToString());
+                    }
+                }
+                #endregion --- Linear GMSK HB ---
+
                 swData.Close();
                 isDataSaved = true;
                 MessageBox.Show("Data have been saved to " + strSaveDataPath);
@@ -2796,6 +3170,28 @@ namespace Bench_Test
 
                 isEVDO_Tested = true;
                 #endregion --- EVDO ---
+            }
+            else if (rbnLCWLB.Checked)
+            {
+                #region --- LINEAR GMSK LB ---
+                //带参数的多线程
+                Thread Test = new Thread(LINEAR_GSMK_TEST);
+                Test.Priority = ThreadPriority.AboveNormal;
+                Test.Start((object)BandList.B_1);
+                isLCWLBTested = true;
+
+                #endregion --- LINEAR GMSK LB ---
+            }
+            else if (rbnLCWHB.Checked)
+            {
+                #region --- LINEAR GMSK HB ---
+                //带参数的多线程
+                Thread Test = new Thread(LINEAR_GSMK_TEST);
+                Test.Priority = ThreadPriority.AboveNormal;
+                Test.Start((object)BandList.B_2);
+                isLCWHBTested = true;
+
+                #endregion --- LINEAR GMSK HB ---
             }
             #endregion --- Group Test ---
 
@@ -3127,13 +3523,58 @@ namespace Bench_Test
             }
             #endregion --- EVDO ---
 
+            #region --- LCW LB ---
+            if (rbnLCWLB.Checked)
+            {
+                // Setting
+                TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_GPCTRL] = TestSetting.LEVEL_GPCTRL;
+                TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_PIN_VRAMP] = TestSetting.LEVEL_PIN_VRAMP;
+                TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_START] = TestSetting.LEVEL_START;
+                TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_STEP] = TestSetting.LEVEL_STEP;
+                TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_STOP] = TestSetting.LEVEL_STOP;
+                TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_TXEN] = TestSetting.LEVEL_TXEN;
+                //TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_VBAT] = TestSetting.LEVEL_VBAT;
+                TestSetting.SETTING_LGMSK_LB[TestSetting.NAME_VCC] = TestSetting.LEVEL_VCC;
+
+                //Frequency List
+                TestSetting.FREQ_LCW_LB.Clear();
+                foreach (double tmp in TestSetting.FREQLIST)
+                {
+                    if (!TestSetting.FREQ_LCW_LB.ContainsKey(tmp)) TestSetting.FREQ_LCW_LB.Add(tmp, tmp);
+
+                }
+            }
+            #endregion --- LCW LB ---
+
+            #region --- LCW HB ---
+            else if (rbnLCWHB.Checked)
+            {
+                // Setting
+                TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_GPCTRL] = TestSetting.LEVEL_GPCTRL;
+                TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_PIN_VRAMP] = TestSetting.LEVEL_PIN_VRAMP;
+                TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_START] = TestSetting.LEVEL_START;
+                TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_STEP] = TestSetting.LEVEL_STEP;
+                TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_STOP] = TestSetting.LEVEL_STOP;
+                TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_TXEN] = TestSetting.LEVEL_TXEN;
+                //TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_VBAT] = TestSetting.LEVEL_VBAT;
+                TestSetting.SETTING_LGMSK_HB[TestSetting.NAME_VCC] = TestSetting.LEVEL_VCC;
+
+                //Frequency List
+                TestSetting.FREQ_LCW_HB.Clear();
+                foreach (double tmp in TestSetting.FREQLIST)
+                {
+                    if (!TestSetting.FREQ_LCW_HB.ContainsKey(tmp)) TestSetting.FREQ_LCW_HB.Add(tmp, tmp);
+                }
+            }
+            #endregion --- LCW HB ---
+
             #endregion --- Transfer change ---
 
             #region --- Save file ---
             StreamWriter swcfg = new StreamWriter(Program.strSweepParameter_FileName);
             StringBuilder sbcfg = new StringBuilder();
 
-            sbcfg.AppendLine("for sweep test use, please do not make any change if you know what it is means.......Ace");
+            sbcfg.AppendLine("for sweep test use, please only make a change if you are sure what are you doing here.......Ace");
             sbcfg.AppendLine("--- Setting ---");
 
             // Setting GMSK_LB
@@ -3205,6 +3646,18 @@ namespace Bench_Test
             // Setting EVDO
             sbcfg.AppendLine("--- EVDO ---");
             foreach (KeyValuePair<string, double> tmp in TestSetting.SETTING_EVDO)
+            {
+                sbcfg.AppendLine(tmp.Key + "," + tmp.Value);
+            }
+            // Setting Linear_GMSK_LB
+            sbcfg.AppendLine("--- Linear_GMSK_LB ---");
+            foreach (KeyValuePair<string, double> tmp in TestSetting.SETTING_LGMSK_LB)
+            {
+                sbcfg.AppendLine(tmp.Key + "," + tmp.Value);
+            }
+            // Setting Linear_GMSK_HB
+            sbcfg.AppendLine("--- Linear_GMSK_HB ---");
+            foreach (KeyValuePair<string, double> tmp in TestSetting.SETTING_LGMSK_HB)
             {
                 sbcfg.AppendLine(tmp.Key + "," + tmp.Value);
             }
@@ -3283,6 +3736,18 @@ namespace Bench_Test
             // Frequency EVDO
             sbcfg.AppendLine("--- EVDO ---");
             foreach (KeyValuePair<double, double> tmp in TestSetting.FREQ_EVDO)
+            {
+                sbcfg.AppendLine(tmp.Key.ToString());
+            }
+            // Frequency LCW LB
+            sbcfg.AppendLine("--- LCW LB ---");
+            foreach (KeyValuePair<double, double> tmp in TestSetting.FREQ_LCW_LB)
+            {
+                sbcfg.AppendLine(tmp.Key.ToString());
+            }
+            // Frequency LCW HB
+            sbcfg.AppendLine("--- LCW HB ---");
+            foreach (KeyValuePair<double, double> tmp in TestSetting.FREQ_LCW_HB)
             {
                 sbcfg.AppendLine(tmp.Key.ToString());
             }
@@ -13615,8 +14080,8 @@ namespace Bench_Test
 
                 }
                 #endregion Search power
-                lblError.Text = Count.ToString();
-                lblError.Refresh();
+                //lblError.Text = Count.ToString();
+                //lblError.Refresh();
 
                 // Frequency
                 dblResult[0] = dblFreq;
@@ -13775,6 +14240,408 @@ namespace Bench_Test
                         dtCWLB.Rows.Add(drmax);
                     else if (WhichBand == BandList.B_2)
                         dtCWHB.Rows.Add(drmax);
+                    else
+                        throw new Exception("No this band");
+
+                    dgvSweepResult.Refresh();
+                    Application.DoEvents();
+                }));
+
+            }
+            #endregion *** Worst harmonic report ***
+
+            AfterTest();
+
+
+        }
+        void LINEAR_GSMK_TEST(object Band)
+        {
+            BandList WhichBand = (BandList)Band;
+
+            #region --- Variable Define ---
+
+            dicVramp.Clear();
+            int intTestID = 1;
+            double[] dblResult = null;
+            double target_power = 0;
+
+            DataTable dtCWTMP = new DataTable();
+
+            if (WhichBand == BandList.B_1)
+            {
+                dblResult = new double[20];
+                //target_power = TestSetting.TARGET_POUT_CWLB;
+                dtCWTMP = dtLCWLB.Clone();
+            }
+            else if (WhichBand == BandList.B_2)
+            {
+                dblResult = new double[13];
+                //target_power = TestSetting.TARGET_POUT_CWHB;
+                dtCWTMP = dtLCWHB.Clone();
+            }
+            else
+                throw new Exception("No this band");
+
+            if (!cbxKeepPrevious.Checked)
+            {
+                this.Invoke((MethodInvoker)(delegate
+                {
+                    if (WhichBand == BandList.B_1)
+                        dtLCWLB.Clear();
+                    else if (WhichBand == BandList.B_2)
+                        dtLCWHB.Clear();
+                    else
+                        throw new Exception("No this band");
+
+                    dgvSweepResult.Refresh();
+                }));
+            }
+
+            #endregion --- Variable Define ---
+
+            #region --- Initialize ---
+            BeforeTest();
+            SetVCC_New(TestSetting.LEVEL_VCC, 3000);
+            SetGPCTRL(TestSetting.LEVEL_GPCTRL);
+            //SetTXEnable(TestSetting.LEVEL_TXEN);
+            //SetVramp(1.8);
+
+            _E4438C.Initialize();
+            //_E4438C.Mode_Initialize(Modulation.CW_BURST);
+            _PM_N1913A.Initialize(rbnDisplayON.Checked);
+            _MXA_N9020A.Initialize(rbnDisplayON.Checked);
+            _E4438C.SetOutput(Output.OFF);
+
+            DateTime t_Start = DateTime.Now;
+
+            if (cbxMipi.Checked)
+            {
+                string Content = "Make sure everything is setup for Linear GMSK testing \r\n" +
+                                "  1) Connect rf source cable to Linear GMSK \r\n" +
+                                "  2) Set mipi control to the right mode in next windows \r\n" +
+                                "  3) Connect / Change highpass filter";
+
+                this.Invoke((MethodInvoker)(delegate
+                {
+                    MessageBox.Show(this, Content, "Linear GMSK Testing", MessageBoxButtons.OK);
+                    Application.DoEvents();
+                    frmMipi.ShowDialog();
+                    wait_2_start(t_Start);
+                }));
+
+                // Start mipi loop trigger
+                if (TestSetting.MIPI_WIDTH != 0)
+                {
+                    double mipi_trig_freq = Math.Round(1.0 / TestSetting.MIPI_WIDTH * 1000 * 1000, 5);
+                    SetVEN(Arb_Channel.Channel_1, TestSetting.LEVEL_TXEN, mipi_trig_freq, false);
+                }
+            }
+            else
+            {
+                string Content = "Make sure everything is setup for Linear GMSK testing \r\n" +
+                                "  1) Connect rf source cable to Linear GMSK \r\n" +
+                                "  2) Set Control box to Linear GMSK mode \r\n" +
+                                "  3) Connect / Change highpass filter";
+
+                this.Invoke((MethodInvoker)(delegate
+                {
+                    MessageBox.Show(this, Content, "Linear GMSK Testing", MessageBoxButtons.OK);
+                    Application.DoEvents();
+                    wait_2_start(t_Start);
+                }));
+
+            }
+
+
+            #endregion --- Initialize ---
+
+            #region --- Linear GMSK Test ---
+            for (double dblPout_Target = TestSetting.LEVEL_START; dblPout_Target <= TestSetting.LEVEL_STOP; dblPout_Target += TestSetting.LEVEL_STEP)
+            {
+                if (StopTest) break;
+
+                double PoutLL = dblPout_Target - 0.05;
+                double PoutUL = dblPout_Target + 0.05;
+
+                foreach (double dblFreq in TestSetting.FREQLIST)
+                {
+                    if (StopTest) break;
+
+                    int Count = 0;
+                    double GMSK_Pout = 0;
+                    double GMSK_Pin = 0;
+                    double GMSK_Icc = 0;
+                    double dblPin = -10; // Pin_Start;
+
+                    _E4438C.SetFrequency(dblFreq);
+                    _E4438C.SetPower(TestSetting.LEVEL_PIN_VRAMP + TestSetting.LOSS_SRC[dblFreq]); 
+                    _E4438C.SetOutput(Output.ON);
+
+                    // Frequency
+                    dblResult[0] = dblFreq;
+                    
+                    // Target Power
+                    dblResult[1] = dblPout_Target;
+
+                    // Pout
+                    _PM_N1913A.Configure__Average_Pulse_Power_with_Duty_Cycle(dblFreq, 25, 256);
+                    util.Wait(intDelay_PowerMeter * intDelay_N1913A_Count);
+
+                    GMSK_Pout = _PM_N1913A.GetPowerResult() + TestSetting.LOSS_MSR_POUT[dblFreq];
+
+                    //Pout Servo
+                    int loop = 0;
+                    while (GMSK_Pout <= PoutLL || GMSK_Pout >= PoutUL)
+                    {
+                        if (loop++ > 15) break;
+                        if ((dblPin = dblPin + dblPout_Target - GMSK_Pout) > 8)
+                        {
+                            dblPin = 8;
+                            _E4438C.SetPower(dblPin + TestSetting.LOSS_SRC[dblFreq]);
+                            _PM_N1913A.Configure__Average_Pulse_Power_with_Duty_Cycle(dblFreq, 25, 256);
+                            util.Wait(intDelay_PowerMeter * intDelay_N1913A_Count);
+
+                            GMSK_Pout = _PM_N1913A.GetPowerResult() + TestSetting.LOSS_MSR_POUT[dblFreq];
+                            GMSK_Pin = dblPin;
+
+                            break;
+                        }
+
+                        _E4438C.SetPower(dblPin + TestSetting.LOSS_SRC[dblFreq]);
+                        _PM_N1913A.Configure__Average_Pulse_Power_with_Duty_Cycle(dblFreq, 25, 256);
+                        util.Wait(intDelay_PowerMeter * intDelay_N1913A_Count);
+
+                        GMSK_Pout = _PM_N1913A.GetPowerResult() + TestSetting.LOSS_MSR_POUT[dblFreq];
+                        GMSK_Pin = dblPin;
+
+                    }
+                    dblResult[2] = GMSK_Pout;
+
+                    // Pin
+                    dblResult[3] = GMSK_Pin;
+
+                    // Gain
+                    dblResult[4] = GMSK_Pout - GMSK_Pin;
+
+                    // ICC
+                    dblResult[5] = _PS_66332A.High_Current();
+                    dblResult[5] = dblResult[5] * 1000;
+
+                    // PAE
+                    dblResult[6] = (Math.Pow(10, ((dblResult[2] - 30) / 10))) / TestSetting.LEVEL_VCC / dblResult[5] * 1000;
+                    dblResult[6] = dblResult[6] * 100;
+
+                    // harmonic 
+                    int har_stop_point;
+                    int ext_har_stop_point;
+                    if (WhichBand == BandList.B_1)
+                    {
+                        har_stop_point = 6;
+                        ext_har_stop_point = 14;
+                    }
+                    else if (WhichBand == BandList.B_2)
+                    {
+                        har_stop_point = 3;
+                        ext_har_stop_point = 7;
+                    }
+                    else
+                        throw new Exception("No this band");
+
+                    for (int i = 2; i <= har_stop_point; i++)
+                    {
+                        _MXA_N9020A.SetFrequency(i * dblFreq);
+                        _MXA_N9020A.SetAttenuattor(0);
+
+                        util.Wait(intDelay_MXA);
+
+                        if (WhichBand == BandList.B_1)
+                            dblResult[5 + i] = _MXA_N9020A.Get_CW_PowerResult() + TestSetting.LOSS_MSR_FILTER_LB[i * dblFreq];
+                        else if (WhichBand == BandList.B_2)
+                            dblResult[5 + i] = _MXA_N9020A.Get_CW_PowerResult() + TestSetting.LOSS_MSR_FILTER_HB[i * dblFreq];
+                        else
+                            throw new Exception("No this band");
+
+                    }
+                    // Extra harmonic 
+                    if (ext_har)
+                    {
+                        for (int i = har_stop_point + 1; i <= ext_har_stop_point; i++)
+                        {
+                            _MXA_N9020A.SetFrequency(i * dblFreq);
+                            util.Wait(intDelay_MXA);
+
+                            if (WhichBand == BandList.B_1)
+                                dblResult[5 + i] = _MXA_N9020A.Get_CW_PowerResult() + TestSetting.LOSS_MSR_FILTER_LB[6000];
+                            else if (WhichBand == BandList.B_2)
+                                dblResult[5 + i] = _MXA_N9020A.Get_CW_PowerResult() + TestSetting.LOSS_MSR_FILTER_HB[6000];
+                            else
+                                throw new Exception("No this band");
+
+                        }
+                    }
+                    // Update_Grid
+                    DataRow drNew = null;
+                    if (WhichBand == BandList.B_1)
+                        drNew = dtLCWLB.NewRow();
+                    else if (WhichBand == BandList.B_2)
+                        drNew = dtLCWHB.NewRow();
+                    else
+                        throw new Exception("No this band");
+
+                    DataRow drNewTmp = dtCWTMP.NewRow();
+                    drNewTmp[0] = drNew[0] = intTestID++;
+                    for (int i = 0; i < dblResult.Count(); i++)
+                    {
+                        drNewTmp[i + 1] = drNew[i + 1] = Math.Round(dblResult[i], 2);
+                    }
+                    dtCWTMP.Rows.Add(drNewTmp);
+                    this.Invoke((MethodInvoker)(delegate
+                    {
+                        if (WhichBand == BandList.B_1)
+                            dtLCWLB.Rows.Add(drNew);
+                        else if (WhichBand == BandList.B_2)
+                            dtLCWHB.Rows.Add(drNew);
+                        else
+                            throw new Exception("No this band");
+
+                        dgvSweepResult.Refresh();
+                        Application.DoEvents();
+                    }));
+
+                    _E4438C.SetOutput(Output.OFF);
+                } // Frequency loop
+            }   // Pout Target loop
+            #endregion  --- Linear GAMK Test ---
+
+            #region --- Worst harmonic report ---
+
+            foreach (double dblFreq in TestSetting.FREQLIST)
+            {
+                if (StopTest) break;
+
+                DataRow drmax = null;
+                if (WhichBand == BandList.B_1)
+                    drmax = dtLCWLB.NewRow();
+                else if (WhichBand == BandList.B_2)
+                    drmax = dtLCWHB.NewRow();
+                else
+                    throw new Exception("No this band");
+
+                drmax[0] = intTestID++;
+                drmax[1] = dblFreq;
+
+                var _2fo = from x in dtCWTMP.AsEnumerable()
+                           where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                           select x.Field<double>("2fo(dBm)");
+
+                var _3fo = from x in dtCWTMP.AsEnumerable()
+                           where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                           select x.Field<double>("3fo(dBm)");
+
+                var _4fo = from x in dtCWTMP.AsEnumerable()
+                           where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                           select x.Field<double>("4fo(dBm)");
+
+                var _5fo = from x in dtCWTMP.AsEnumerable()
+                           where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                           select x.Field<double>("5fo(dBm)");
+
+                var _6fo = from x in dtCWTMP.AsEnumerable()
+                           where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                           select x.Field<double>("6fo(dBm)");
+
+                try
+                {
+                    drmax[8] = _2fo.ToList<double>().Max();
+                    drmax[9] = _3fo.ToList<double>().Max();
+
+                    if (WhichBand == BandList.B_1 || ext_har)
+                    {
+                        drmax[10] = _4fo.ToList<double>().Max();
+                        drmax[11] = _5fo.ToList<double>().Max();
+                        drmax[12] = _6fo.ToList<double>().Max();
+                    }
+                }
+                catch
+                {
+                    drmax[8] = 0;
+                    drmax[9] = 0;
+                    drmax[10] = 0;
+                    drmax[11] = 0;
+                    drmax[12] = 0;
+                }
+
+                #region //// for extra harmonic
+                if (ext_har)
+                {
+                    var _7fo = from x in dtCWTMP.AsEnumerable()
+                               where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                               select x.Field<double>("7fo(dBm)");
+
+                    var _8fo = from x in dtCWTMP.AsEnumerable()
+                               where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                               select x.Field<double>("8fo(dBm)");
+
+                    var _9fo = from x in dtCWTMP.AsEnumerable()
+                               where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                               select x.Field<double>("9fo(dBm)");
+
+                    var _10fo = from x in dtCWTMP.AsEnumerable()
+                                where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                                select x.Field<double>("10fo(dBm)");
+
+                    var _11fo = from x in dtCWTMP.AsEnumerable()
+                                where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                                select x.Field<double>("11fo(dBm)");
+
+                    var _12fo = from x in dtCWTMP.AsEnumerable()
+                                where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                                select x.Field<double>("12fo(dBm)");
+
+                    var _13fo = from x in dtCWTMP.AsEnumerable()
+                                where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                                select x.Field<double>("13fo(dBm)");
+
+                    var _14fo = from x in dtCWTMP.AsEnumerable()
+                                where x.Field<double>("Frequency(MHz)") == dblFreq // && double.Parse(x.Field<string>("Vramp(V)")) <= dicVramp[dblFreq]
+                                select x.Field<double>("14fo(dBm)");
+                    try
+                    {
+                        drmax[13] = _7fo.ToList<double>().Max();
+                        if (WhichBand == BandList.B_1)
+                        {
+                            drmax[14] = _8fo.ToList<double>().Max();
+                            drmax[15] = _9fo.ToList<double>().Max();
+                            drmax[16] = _10fo.ToList<double>().Max();
+                            drmax[17] = _11fo.ToList<double>().Max();
+                            drmax[18] = _12fo.ToList<double>().Max();
+                            drmax[19] = _13fo.ToList<double>().Max();
+                            drmax[20] = _14fo.ToList<double>().Max();
+                        }
+                    }
+                    catch
+                    {
+
+                        drmax[13] = 0;
+                        drmax[14] = 0;
+                        drmax[15] = 0;
+                        drmax[16] = 0;
+                        drmax[17] = 0;
+                        drmax[18] = 0;
+                        drmax[19] = 0;
+                        drmax[20] = 0;
+                    }
+
+                }
+                #endregion
+
+                this.Invoke((MethodInvoker)(delegate
+                {
+
+                    if (WhichBand == BandList.B_1)
+                        dtLCWLB.Rows.Add(drmax);
+                    else if (WhichBand == BandList.B_2)
+                        dtLCWHB.Rows.Add(drmax);
                     else
                         throw new Exception("No this band");
 
@@ -13968,6 +14835,7 @@ namespace Bench_Test
             dgvSweepResult.Refresh();
             Application.DoEvents();
         }
+
 
 
     }

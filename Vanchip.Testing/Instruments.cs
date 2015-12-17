@@ -536,6 +536,17 @@ namespace Vanchip.Testing
                     ESG_E4438C.Write("OUTP:STAT OFF");
                     Wait();
                 }
+                else if (mode == Modulation.CW_BURST)
+                {
+                    ESG_E4438C.Write(":SOUR:PULM:SOUR INT");
+                    ESG_E4438C.Write(":SOUR:PULM:INT:PER 4.8ms");
+                    ESG_E4438C.Write(":SOUR:PULM:INT:PWID 1.2ms");
+                    ESG_E4438C.Write(":SOUR:PULM:STAT ON ");
+
+                    ESG_E4438C.Write("OUTP:MOD:STAT OFF");
+                    ESG_E4438C.Write("OUTP:STAT OFF");
+                    Wait();
+                }
             }
             catch (Exception e)
             {
@@ -543,8 +554,7 @@ namespace Vanchip.Testing
             }
 
         }
-
-
+        
         public void Mode_Initialize(Modulation mode ,double DelayTime_in_ms)
         {
             try
@@ -5969,7 +5979,8 @@ namespace Vanchip.Testing
         LTEFDD,         //5
         CDMA,           //6
         EVDO,           //7
-        EDGE_CONTINOUS  //8
+        EDGE_CONTINOUS, //8
+        CW_BURST        //9
     }
 
     public enum Output

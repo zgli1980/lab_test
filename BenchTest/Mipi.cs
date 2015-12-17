@@ -1,6 +1,8 @@
 ﻿/// Reversion history
 /// 20150226        Fix mipi read error             Ace Li
 /// 20150226_2      Add Visa control for mipi       Ace Li
+/// 20151106        Can change clock dutycycle      Ace Li
+/// 20151106        add loop, trigger function      Ace Li
 /// 
 
 
@@ -21,12 +23,18 @@ namespace Bench_Test
 {
     public partial class Mipi : Form
     {
+        bool simulated = false;
+        bool bln_loop = false;
+
+        #region ### Variable
         bool isgpib = true;
-        double dblFreq = 0.0;
+        double dblFreq = 1.0;
         double dblVolt = 1.8;
-        int intPoint = 0;
+        int intPoint = 10;
         double dblShift = 0;
-        double dblDuty = 0;
+        double dblDuty = 0.5;
+
+        bool is_Vadilate = false;
 
         int GPIB_Addr = Instruments_address._12;
         string VISA_str = Instruments_VISA.Arb_33522A;
@@ -35,7 +43,10 @@ namespace Bench_Test
         GPIB gpib = null;
         VISA visa = null;
         Util util = new Util();
-                
+
+        static int Max_SRate_MHz = 240;
+
+        #endregion ### Variable
 
         public Mipi()
         {
@@ -46,6 +57,7 @@ namespace Bench_Test
 
         private void Mipi_Load(object sender, EventArgs e)
         {
+            this.Text = "MIPI - 20151217";
             if (Program.debug_mipi)
             {
                 cbx_P1.Enabled = true;
@@ -59,21 +71,24 @@ namespace Bench_Test
             }
             ResetMipiPanel();
 
-            try
+            if (!simulated)
             {
-                if (gpib == null || !gpib.isInit) gpib = new GPIB();
-                gpib.Send(GPIB_Addr, "*RST");
-            }
-            catch
-            {
-                if (visa == null || !visa.isInit) visa = new VISA(VISA_str);
-                visa.Send("*RST");
-                isgpib = false;
-            }
-            finally
-            {
-                SendCmd("*RST");
-                util.Wait(1000);
+                try
+                {
+                    if (gpib == null || !gpib.isInit) gpib = new GPIB();
+                    gpib.Send(GPIB_Addr, "*RST");
+                }
+                catch
+                {
+                    if (visa == null || !visa.isInit) visa = new VISA(VISA_str);
+                    visa.Send("*RST");
+                    isgpib = false;
+                }
+                finally
+                {
+                    SendCmd("*RST");
+                    util.Wait(1000);
+                }
             }
 
 
@@ -110,6 +125,8 @@ namespace Bench_Test
             if (lbxMipi.SelectedItem == null) return;
             StreamReader srMipi = new StreamReader(Program.strMipi_FilePath + lbxMipi.SelectedItem.ToString() + ".ini");
 
+            tbxDuty.Text = "0.5";
+
             line = srMipi.ReadLine();
             do
             {
@@ -138,6 +155,9 @@ namespace Bench_Test
                         break;
                     case "Shift":
                         tbxShift.Text = line_content[1];
+                        break;
+                    case "DutyCycle":
+                        tbxDuty.Text = line_content[1];
                         break;
                     case "reg0":
                         cbxReg0.Checked = true;
@@ -178,6 +198,12 @@ namespace Bench_Test
                     case "Method":
                         strTemp = line_content[1].Split('_');
                         cbbMethod.SelectedIndex = Convert.ToInt16(strTemp[0]);
+                        break;
+                    case "mipi_loop":
+                        strTemp = line_content[1].Split('_');
+                        cbx_loop.Checked = true;
+                        tbx_burst.Text = strTemp[0];
+                        tbx_width.Text = strTemp[1];
                         break;
                 }
                 line = srMipi.ReadLine();           
@@ -356,9 +382,10 @@ namespace Bench_Test
             tbxVolt.Text = "1.8";
             tbxPoint.Text = "10";
             tbxShift.Text = "0";
+            tbxDuty.Text = "0.5";
             tbxProduct.Text = "VC7778";
             tbxMode.Text = "OFF";
-            tbxUSID.Text = "1001";
+            tbxUSID.Text = "1111";
             tbxAddr_0.Text = "0x0";
             tbxData_0.Text = "0x00";
 
@@ -372,7 +399,8 @@ namespace Bench_Test
             for (int i = 0; i < strFiles.Length; i++)
             {
                 FileInfo fi = new FileInfo(strFiles[i]);
-                lbxMipi.Items.Add(fi.Name.Substring(0, fi.Name.Length - 4));
+                if (fi.Name.Substring(1, 1) != ".")
+                    lbxMipi.Items.Add(fi.Name.Substring(0, fi.Name.Length - 4));
             }
 
         }
@@ -410,7 +438,7 @@ namespace Bench_Test
             StreamWriter swmipi = new StreamWriter(FileName);
             StringBuilder sbmipi = new StringBuilder();
 
-            sbmipi.AppendLine("for Mipi(RFFE) control, please do not make any change if you know what it is means.......Ace");
+            sbmipi.AppendLine("for Mipi(RFFE) control, please make the change if you are sure what are you doing here.......Ace");
             sbmipi.AppendLine("--- Start ---");
             
 
@@ -424,6 +452,7 @@ namespace Bench_Test
             sbmipi.AppendLine("Volt," + tbxVolt.Text);
             sbmipi.AppendLine("Point," + tbxPoint.Text);
             sbmipi.AppendLine("Shift," + tbxShift.Text);
+            sbmipi.AppendLine("DutyCycle," + tbxDuty.Text);
 
             // Register Info
             sbmipi.AppendLine("reg0," + tbxAddr_0.Text + "_" + tbxData_0.Text);
@@ -433,6 +462,9 @@ namespace Bench_Test
             if (cbxReg4.Checked) sbmipi.AppendLine("reg4," + tbxAddr_4.Text + "_" + tbxData_4.Text);
             if (cbxReg5.Checked) sbmipi.AppendLine("reg5," + tbxAddr_5.Text + "_" + tbxData_5.Text);
             sbmipi.AppendLine("Method," + cbbMethod.SelectedIndex.ToString() + "_" + cbbMethod.SelectedItem.ToString());
+
+            // Other
+            if (bln_loop) sbmipi.AppendLine("mipi_loop," + tbx_burst.Text + "_" + tbx_width.Text);
 
 
 
@@ -515,7 +547,12 @@ namespace Bench_Test
 
             bool extWrite = false;
 
+            TestSetting.MIPI_BURST = int.Parse(tbx_burst.Text);
+            TestSetting.MIPI_WIDTH = int.Parse(tbx_width.Text);
+
             #endregion Variable Define
+
+            if (!is_Vadilate) Textbox_Vadilate();
 
             dblFreq = Convert.ToDouble(tbxFreq.Text);
             dblVolt = Convert.ToDouble(tbxVolt.Text);
@@ -526,33 +563,6 @@ namespace Bench_Test
 
             // Enable Extended Register Write
             if (cbbMethod.SelectedIndex == 1) extWrite = true;
-
-            #region Register 0
-            if (cbxReg0.Checked)
-            {
-                Addr = ParseBinaryFromText(tbxAddr_0.Text, 5);
-                Data = ParseBinaryFromText(tbxData_0.Text, 8);
-
-                tbx_P1_0.Text = P1 = Mipi_Parity(USID + CMD + Addr);
-                tbx_P2_0.Text = P2 = Mipi_Parity(Data);
-
-                cmdString = SSC + USID + CMD + Addr + P1 + Data + P2;
-                tbxDebug.Text = cmdString;
-
-                //Extended Register Write
-                intTotalBytes += 1;
-                extAddr = CheckNumDigits(Addr, true, 8);
-                extdata.Append(extAddr);
-                extP = Mipi_Parity(extAddr);
-                extdata.Append(extP);
-                extdata.Append(Data);
-                extdata.Append(P2);
-
-                if (!extWrite)
-                    RegisterWrite(GPIB_Addr, "reg0", cmdString);
-
-            }
-            #endregion Register 0
 
             #region Register 1
             if (cbxReg1.Checked)
@@ -663,6 +673,47 @@ namespace Bench_Test
 
             }
             #endregion Register 5
+
+            #region Register 0 ---### Must be the last one ###---
+            if (cbxReg0.Checked)
+            {
+                Addr = ParseBinaryFromText(tbxAddr_0.Text, 5);
+                Data = ParseBinaryFromText(tbxData_0.Text, 8);
+
+                tbx_P1_0.Text = P1 = Mipi_Parity(USID + CMD + Addr);
+                tbx_P2_0.Text = P2 = Mipi_Parity(Data);
+
+                cmdString = SSC + USID + CMD + Addr + P1 + Data + P2;
+                tbxDebug.Text = cmdString;
+
+                //Extended Register Write
+                intTotalBytes += 1;
+                extAddr = CheckNumDigits(Addr, true, 8);
+                extdata.Append(extAddr);
+                extP = Mipi_Parity(extAddr);
+                extdata.Append(extP);
+                extdata.Append(Data);
+                extdata.Append(P2);
+
+                if (bln_loop)
+                {
+                    int burst_width = int.Parse(tbx_burst.Text);
+                    cmdString = cmdString + "#";
+
+                    for (int i = 1; i <= burst_width; i++)
+                    {
+                        cmdString = cmdString + "0";
+                    }
+                    cmdString = cmdString + "#";
+                    cmdString = cmdString + SSC + USID + CMD + Addr + P1 + "000000001"; // +P2; // "00000000" turn off the PA enable
+
+                    RegisterWrite(GPIB_Addr, "reg0", cmdString, Triger_Source.Ext);
+                }
+                else if (!extWrite)
+                    RegisterWrite(GPIB_Addr, "reg0", cmdString);
+
+            }
+            #endregion Register 0
 
             #region Extended Write
             extBC = Dec2Binary(intTotalBytes);
@@ -840,50 +891,52 @@ namespace Bench_Test
 
             #endregion Build Mipi Array
 
-            #region Send to Arb
-            SendCmd("*CLS");
+            if (!simulated)
+            {
+                #region Send to Arb
+                SendCmd("*CLS");
 
-            SendCmd("SOUR1:FUNC ARB");
-            SendCmd("SOUR1:DATA:VOL:CLE");
-            SendCmd("SOUR1:DATA:ARB SCLK" + sbClock.ToString());
-            SendCmd("SOUR1:FUNC:ARB SCLK");
+                SendCmd("SOUR1:FUNC ARB");
+                SendCmd("SOUR1:DATA:VOL:CLE");
+                SendCmd("SOUR1:DATA:ARB SCLK" + sbClock.ToString());
+                SendCmd("SOUR1:FUNC:ARB SCLK");
 
-            SendCmd("SOUR1:FUNC:ARB:SRATE " + SRate.ToString());
-            //SendCmd("SOUR1:FUNC:ARB:FILTER OFF");
-            SendCmd("SOUR1:FUNC:ARB:FILTER STEP");
-            SendCmd("OUTP1:LOAD INF");
-            SendCmd("SOUR1:VOLT " + dblVolt.ToString());
-            SendCmd("SOUR1:VOLT:OFFS 0");
+                SendCmd("SOUR1:FUNC:ARB:SRATE " + SRate.ToString());
+                //SendCmd("SOUR1:FUNC:ARB:FILTER OFF");
+                SendCmd("SOUR1:FUNC:ARB:FILTER STEP");
+                SendCmd("OUTP1:LOAD INF");
+                SendCmd("SOUR1:VOLT " + dblVolt.ToString());
+                SendCmd("SOUR1:VOLT:OFFS 0");
 
-            SendCmd("SOUR1:BURS:STAT ON");
-            SendCmd("SOUR1:BURS:MODE TRIG");
-            SendCmd("SOUR1:BURS:NCYC 1");
-            SendCmd("TRIG1:SOUR BUS");
+                SendCmd("SOUR1:BURS:STAT ON");
+                SendCmd("SOUR1:BURS:MODE TRIG");
+                SendCmd("SOUR1:BURS:NCYC 1");
+                SendCmd("TRIG1:SOUR BUS");
 
-            SendCmd("SOUR2:FUNC ARB");
-            SendCmd("SOUR2:DATA:VOL:CLE");
-            SendCmd("SOUR2:DATA:ARB " + arb_name + sbData.ToString());
-            SendCmd("SOUR2:FUNC:ARB " + arb_name);
+                SendCmd("SOUR2:FUNC ARB");
+                SendCmd("SOUR2:DATA:VOL:CLE");
+                SendCmd("SOUR2:DATA:ARB " + arb_name + sbData.ToString());
+                SendCmd("SOUR2:FUNC:ARB " + arb_name);
 
-            SendCmd("SOUR2:FUNC:ARB:SRATE " + SRate.ToString());
-            //SendCmd("SOUR2:FUNC:ARB:FILTER OFF");
-            SendCmd("SOUR2:FUNC:ARB:FILTER STEP");
-            SendCmd("OUTP2:LOAD INF");
-            SendCmd("SOUR2:VOLT " + dblVolt.ToString());
-            SendCmd("SOUR2:VOLT:OFFS 0");
+                SendCmd("SOUR2:FUNC:ARB:SRATE " + SRate.ToString());
+                //SendCmd("SOUR2:FUNC:ARB:FILTER OFF");
+                SendCmd("SOUR2:FUNC:ARB:FILTER STEP");
+                SendCmd("OUTP2:LOAD INF");
+                SendCmd("SOUR2:VOLT " + dblVolt.ToString());
+                SendCmd("SOUR2:VOLT:OFFS 0");
 
-            SendCmd("SOUR2:BURS:STAT ON");
-            SendCmd("SOUR2:BURS:MODE TRIG");
-            SendCmd("SOUR2:BURS:NCYC 1");
-            SendCmd("TRIG2:SOUR BUS");
+                SendCmd("SOUR2:BURS:STAT ON");
+                SendCmd("SOUR2:BURS:MODE TRIG");
+                SendCmd("SOUR2:BURS:NCYC 1");
+                SendCmd("TRIG2:SOUR BUS");
 
-            SendCmd("OUTP1 ON");
-            SendCmd("OUTP2 ON");
+                SendCmd("OUTP1 ON");
+                SendCmd("OUTP2 ON");
 
-            util.Wait(1000);
-            SendCmd("*TRG");
-            #endregion Send to Arb
-
+                util.Wait(1000);
+                SendCmd("*TRG");
+                #endregion Send to Arb
+            }
             //SendCmd("*RST");
 
         }
@@ -988,65 +1041,526 @@ namespace Bench_Test
 
             #endregion Build Mipi Array
 
-            #region Send to Arb
-            SendCmd("*CLS");
+            if (!simulated)
+            {
+                #region Send to Arb
+                SendCmd("*CLS");
 
-            SendCmd("SOUR1:FUNC ARB");
-            SendCmd("SOUR1:DATA:VOL:CLE");
-            SendCmd("SOUR1:DATA:ARB SCLK" + sbClock.ToString());
-            SendCmd("SOUR1:FUNC:ARB SCLK");
+                SendCmd("SOUR1:FUNC ARB");
+                SendCmd("SOUR1:DATA:VOL:CLE");
+                SendCmd("SOUR1:DATA:ARB SCLK" + sbClock.ToString());
+                SendCmd("SOUR1:FUNC:ARB SCLK");
 
-            SendCmd("SOUR1:FUNC:ARB:SRATE " + SRate.ToString());
-            //SendCmd("SOUR1:FUNC:ARB:FILTER OFF");
-            SendCmd("OUTP1:LOAD INF");
-            SendCmd("SOUR1:VOLT " + dblVolt.ToString());
-            SendCmd("SOUR1:VOLT:OFFS 0");
+                SendCmd("SOUR1:FUNC:ARB:SRATE " + SRate.ToString());
+                //SendCmd("SOUR1:FUNC:ARB:FILTER OFF");
+                SendCmd("OUTP1:LOAD INF");
+                SendCmd("SOUR1:VOLT " + dblVolt.ToString());
+                SendCmd("SOUR1:VOLT:OFFS 0");
 
-            SendCmd("SOUR1:BURS:STAT ON");
-            SendCmd("SOUR1:BURS:MODE TRIG");
-            SendCmd("SOUR1:BURS:NCYC 1");
-            SendCmd("TRIG1:SOUR BUS");
+                SendCmd("SOUR1:BURS:STAT ON");
+                SendCmd("SOUR1:BURS:MODE TRIG");
+                SendCmd("SOUR1:BURS:NCYC 1");
+                SendCmd("TRIG1:SOUR BUS");
 
-            SendCmd("SOUR2:FUNC ARB");
-            SendCmd("SOUR2:DATA:VOL:CLE");
-            SendCmd("SOUR2:DATA:ARB " + arb_name + sbData.ToString());
-            SendCmd("SOUR2:FUNC:ARB " + arb_name);
+                SendCmd("SOUR2:FUNC ARB");
+                SendCmd("SOUR2:DATA:VOL:CLE");
+                SendCmd("SOUR2:DATA:ARB " + arb_name + sbData.ToString());
+                SendCmd("SOUR2:FUNC:ARB " + arb_name);
 
-            SendCmd("SOUR2:FUNC:ARB:SRATE " + SRate.ToString());
-            //SendCmd("SOUR2:FUNC:ARB:FILTER OFF");
-            SendCmd("OUTP2:LOAD INF");
-            SendCmd("SOUR2:VOLT " + dblVolt.ToString());
-            SendCmd("SOUR2:VOLT:OFFS 0");
+                SendCmd("SOUR2:FUNC:ARB:SRATE " + SRate.ToString());
+                //SendCmd("SOUR2:FUNC:ARB:FILTER OFF");
+                SendCmd("OUTP2:LOAD INF");
+                SendCmd("SOUR2:VOLT " + dblVolt.ToString());
+                SendCmd("SOUR2:VOLT:OFFS 0");
 
-            SendCmd("SOUR2:BURS:STAT ON");
-            SendCmd("SOUR2:BURS:MODE TRIG");
-            SendCmd("SOUR2:BURS:NCYC 1");
-            SendCmd("TRIG2:SOUR BUS");
+                SendCmd("SOUR2:BURS:STAT ON");
+                SendCmd("SOUR2:BURS:MODE TRIG");
+                SendCmd("SOUR2:BURS:NCYC 1");
+                SendCmd("TRIG2:SOUR BUS");
 
-            SendCmd("OUTP1 ON");
-            SendCmd("OUTP2 ON");
+                SendCmd("OUTP1 ON");
+                SendCmd("OUTP2 ON");
 
-            util.Wait(1000);
-            MessageBox.Show("Set oscilloscope to trigger mode");
-            SendCmd("*TRG");
-            #endregion Send to Arb
+                util.Wait(1000);
+                MessageBox.Show("Set oscilloscope to trigger mode");
+                SendCmd("*TRG");
+                #endregion Send to Arb
+            }
+            //SendCmd("*RST");
 
+        }
+        private void RegisterWrite(int GPIB_Addr, string arb_name, string strCmd, Triger_Source trigger)
+        {
+            //int shift_point = (int)Math.Ceiling((double)intPoint / 5) + intShift;
+
+            double SRate = dblFreq * intPoint * 2E6;
+            int shift_point = (int)Math.Ceiling((double)(dblShift * 10));
+            int total_point = (strCmd.Length + 4) * intPoint;
+            int intHigh = Convert.ToInt32(intPoint * 2 * dblDuty);
+            int intLow = intPoint * 2 - intHigh;
+
+            #region Build Mipi Array
+            StringBuilder sbClock = new StringBuilder();
+            StringBuilder sbData = new StringBuilder();
+
+            if (bln_loop)
+            {
+                string[] strCmdLst = strCmd.Split('#');
+
+                #region //// First cmd
+                #region //// Prefix 2*point  一个周期
+                for (int i = 1; i <= intPoint * 2; i++)
+                {
+                    if (shift_point > 0)
+                    {
+                        if (i > shift_point)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+
+                        sbData.Append(",");
+                        sbData.Append(0);
+                    }
+                    else if (shift_point < 0)
+                    {
+                        if (i > Math.Abs(shift_point))
+                        {
+                            sbData.Append(",");
+                            sbData.Append(0);
+                        }
+
+                        sbClock.Append(",");
+                        sbClock.Append(0);
+                    }
+
+                }
+                #endregion
+
+                #region //// Data
+                for (int j = 0; j < strCmdLst[0].Length; j++)
+                {
+                    for (int i = 1; i <= intPoint * 2; i++)
+                    {
+                        // SSC no clock
+                        if (j <= 1)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+                        else if (i <= intHigh)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(1);
+                        }
+                        else if (i > intHigh)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+
+                        sbData.Append(",");
+                        sbData.Append(strCmdLst[0][j]);
+                    }
+                }
+                #endregion
+
+                #region //// BP signal
+                for (int i = 1; i <= intPoint * 2; i++)
+                {
+                    if (i <= intHigh)
+                    {
+                        sbClock.Append(",");
+                        sbClock.Append(1);
+                    }
+                    else if (i > intHigh)
+                    {
+                        sbClock.Append(",");
+                        sbClock.Append(0);
+                    }
+                    sbData.Append(",");
+                    sbData.Append(0);
+                }
+                #endregion
+
+                #region //// Suffix 2*point
+                for (int i = 1; i <= intPoint * 2 + shift_point; i++)
+                {
+                    sbClock.Append(",");
+                    sbClock.Append(0);
+                    if (i <= intPoint * 2)
+                    {
+                        sbData.Append(",");
+                        sbData.Append(0);
+                    }
+                }
+                #endregion
+
+                #endregion
+
+                #region //// Burst width
+                for (int j = 0; j < strCmdLst[1].Length; j++)
+                {
+                    for (int i = 1; i <= intPoint * 2; i++)
+                    {
+                        sbClock.Append(",");
+                        sbClock.Append(0);
+                        sbData.Append(",");
+                        sbData.Append(strCmdLst[1][j]);
+                    }
+                }
+                #endregion
+
+                #region //// 2nd cmd
+                #region //// Prefix 2*point  一个周期
+                for (int i = 1; i <= intPoint * 2; i++)
+                {
+                    if (shift_point > 0)
+                    {
+                        if (i > shift_point)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+
+                        sbData.Append(",");
+                        sbData.Append(0);
+                    }
+                    else if (shift_point < 0)
+                    {
+                        if (i > Math.Abs(shift_point))
+                        {
+                            sbData.Append(",");
+                            sbData.Append(0);
+                        }
+
+                        sbClock.Append(",");
+                        sbClock.Append(0);
+                    }
+
+                }
+                #endregion
+
+                #region //// Data
+                for (int j = 0; j < strCmdLst[2].Length; j++)
+                {
+                    for (int i = 1; i <= intPoint * 2; i++)
+                    {
+                        // SSC no clock
+                        if (j <= 1)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+                        else if (i <= intHigh)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(1);
+                        }
+                        else if (i > intHigh)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+
+                        sbData.Append(",");
+                        sbData.Append(strCmdLst[2][j]);
+                    }
+                }
+                #endregion
+
+                #region //// BP signal
+                for (int i = 1; i <= intPoint * 2; i++)
+                {
+                    if (i <= intHigh)
+                    {
+                        sbClock.Append(",");
+                        sbClock.Append(1);
+                    }
+                    else if (i > intHigh)
+                    {
+                        sbClock.Append(",");
+                        sbClock.Append(0);
+                    }
+                    sbData.Append(",");
+                    sbData.Append(0);
+                }
+                #endregion
+
+                #region //// Suffix 2*point
+                for (int i = 1; i <= intPoint * 2 + shift_point; i++)
+                {
+                    sbClock.Append(",");
+                    sbClock.Append(0);
+                    if (i <= intPoint * 2)
+                    {
+                        sbData.Append(",");
+                        sbData.Append(0);
+                    }
+                }
+                #endregion
+
+                #endregion
+
+            }
+
+            else
+            {
+                #region //// Prefix 2*point  一个周期
+                for (int i = 1; i <= intPoint * 2; i++)
+                {
+                    if (shift_point > 0)
+                    {
+                        if (i > shift_point)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+
+                        sbData.Append(",");
+                        sbData.Append(0);
+                    }
+                    else if (shift_point < 0)
+                    {
+                        if (i > Math.Abs(shift_point))
+                        {
+                            sbData.Append(",");
+                            sbData.Append(0);
+                        }
+
+                        sbClock.Append(",");
+                        sbClock.Append(0);
+                    }
+
+                }
+                #endregion
+
+                #region //// Data
+                for (int j = 0; j < strCmd.Length; j++)
+                {
+                    for (int i = 1; i <= intPoint * 2; i++)
+                    {
+                        // SSC no clock
+                        if (j <= 1)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+                        else if (i <= intHigh)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(1);
+                        }
+                        else if (i > intHigh)
+                        {
+                            sbClock.Append(",");
+                            sbClock.Append(0);
+                        }
+
+                        sbData.Append(",");
+                        sbData.Append(strCmd[j]);
+                    }
+                }
+                #endregion
+
+                #region //// BP signal
+                for (int i = 1; i <= intPoint * 2; i++)
+                {
+                    if (i <= intHigh)
+                    {
+                        sbClock.Append(",");
+                        sbClock.Append(1);
+                    }
+                    else if (i > intHigh)
+                    {
+                        sbClock.Append(",");
+                        sbClock.Append(0);
+                    }
+                    sbData.Append(",");
+                    sbData.Append(0);
+                }
+                #endregion
+
+                #region //// Suffix 2*point
+                for (int i = 1; i <= intPoint * 2 + shift_point; i++)
+                {
+                    sbClock.Append(",");
+                    sbClock.Append(0);
+                    if (i <= intPoint * 2)
+                    {
+                        sbData.Append(",");
+                        sbData.Append(0);
+                    }
+                }
+                #endregion }
+            }
+            #endregion Build Mipi Array
+
+            if (!simulated)
+            {
+                #region Send to Arb
+                SendCmd("*CLS");
+
+                SendCmd("SOUR1:FUNC ARB");
+                SendCmd("SOUR1:DATA:VOL:CLE");
+                SendCmd("SOUR1:DATA:ARB SCLK" + sbClock.ToString());
+                SendCmd("SOUR1:FUNC:ARB SCLK");
+
+                SendCmd("SOUR1:FUNC:ARB:SRATE " + SRate.ToString());
+                //SendCmd("SOUR1:FUNC:ARB:FILTER OFF");
+                SendCmd("SOUR1:FUNC:ARB:FILTER STEP");
+                SendCmd("OUTP1:LOAD INF");
+                SendCmd("SOUR1:VOLT " + dblVolt.ToString());
+                SendCmd("SOUR1:VOLT:OFFS 0");
+
+                SendCmd("SOUR1:BURS:STAT ON");
+                SendCmd("SOUR1:BURS:MODE TRIG");
+                SendCmd("SOUR1:BURS:NCYC 1");
+                SendCmd("TRIG1:SOUR BUS");
+
+                SendCmd("SOUR2:FUNC ARB");
+                SendCmd("SOUR2:DATA:VOL:CLE");
+                SendCmd("SOUR2:DATA:ARB " + arb_name + sbData.ToString());
+                SendCmd("SOUR2:FUNC:ARB " + arb_name);
+
+                SendCmd("SOUR2:FUNC:ARB:SRATE " + SRate.ToString());
+                //SendCmd("SOUR2:FUNC:ARB:FILTER OFF");
+                SendCmd("SOUR2:FUNC:ARB:FILTER STEP");
+                SendCmd("OUTP2:LOAD INF");
+                SendCmd("SOUR2:VOLT " + dblVolt.ToString());
+                SendCmd("SOUR2:VOLT:OFFS 0");
+
+                SendCmd("SOUR2:BURS:STAT ON");
+                SendCmd("SOUR2:BURS:MODE TRIG");
+                SendCmd("SOUR2:BURS:NCYC 1");
+                SendCmd("TRIG2:SOUR BUS");
+
+                SendCmd("OUTP1 ON");
+                SendCmd("OUTP2 ON");
+
+                // set ext trigger
+                if (trigger == Triger_Source.Ext)
+                {
+                    SendCmd("TRIG1:SOUR EXT");
+                    SendCmd("TRIG2:SOUR EXT");
+                }
+                else
+                {
+                    util.Wait(1000);
+                    SendCmd("*TRG");
+                }
+                #endregion Send to Arb
+            }
             //SendCmd("*RST");
 
         }
 
         private void SendCmd(string strCmd)
         {
+            if (simulated) return;
+
             if (isgpib)
                 gpib.Send(GPIB_Addr, strCmd);
             else
                 visa.Send(strCmd);
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void Textbox_Vadilate()
         {
+            Freq_verify();
+            Point_verify();
+
+            is_Vadilate = true;
 
         }
+        private void Point_verify()
+        {
+            try
+            {
+                dblFreq = Convert.ToDouble(tbxFreq.Text);
+
+                int intp = Convert.ToInt32(tbxPoint.Text);
+                int intmaxp = Convert.ToInt32(Max_SRate_MHz / dblFreq / 2);
+
+                if (intp < 10)
+                {
+                    MessageBox.Show("Point less than 10 may cause the mipi does not work ");
+                    //tbxPoint.Text = "10";
+                }
+                else if (intp > intmaxp)
+                {
+                    MessageBox.Show("Point can not exceed " + intmaxp.ToString() + ", if Freq is set to " + dblFreq.ToString());
+                    intp = Convert.ToInt32(Max_SRate_MHz / dblFreq / 2);
+                    tbxPoint.Text = intp.ToString();
+                }
+            }
+            catch
+            {
+                tbxPoint.Text = "10";
+                tbxFreq.Text = "1";
+            }
+
+        }
+        private void Freq_verify()
+        {
+            try
+            {
+                intPoint = Convert.ToInt16(tbxPoint.Text);
+
+                double dblf = Convert.ToDouble(tbxFreq.Text);
+                double dblMaxf = Max_SRate_MHz / 10 / 2;
+
+                if (dblf < 0.1)
+                {
+                    MessageBox.Show("Freq can not less than 0.1 MHz ");
+                    tbxFreq.Text = "0.1";
+                }
+                else if (dblf > dblMaxf)
+                {
+                    MessageBox.Show("Freq exceed " + dblMaxf.ToString() + "MHz may cause mipi does not work");
+                    //tbxFreq.Text = dblMaxf.ToString();
+                }
+
+            }
+            catch
+            {
+                tbxPoint.Text = "10";
+                tbxFreq.Text = "1";
+            }
+        }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            if (!is_Vadilate) Textbox_Vadilate();
+        }
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            is_Vadilate = false;
+        }
+
+        private void cbxTrgigger_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbx_loop.Checked)
+            {
+                bln_loop = true;
+                tbx_burst.Enabled = true;
+                tbx_width.Enabled = true;
+                tbx_burst.Text = "1154";
+                tbx_width.Text = "4616";
+                cbbMethod.SelectedIndex = 0;
+                cbbMethod.Enabled = false;
+
+
+            }
+            else
+            {
+                bln_loop = false;
+                cbbMethod.Enabled = true;
+                tbx_burst.Enabled = false;
+                tbx_width.Enabled = false;
+            }
+        }
+
 
 
     }

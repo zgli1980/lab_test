@@ -68,6 +68,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Mipi_Panel = new System.Windows.Forms.GroupBox();
+            this.tbx_burst = new System.Windows.Forms.TextBox();
+            this.cbx_loop = new System.Windows.Forms.CheckBox();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tbxDuty = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -96,6 +99,9 @@
             this.btnTest = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbx_width = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.Mipi_Panel.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -241,6 +247,7 @@
             this.tbxFreq.TabIndex = 3;
             this.tbxFreq.Text = "1.0";
             this.tbxFreq.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxFreq.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // tbxVolt
             // 
@@ -250,6 +257,7 @@
             this.tbxVolt.TabIndex = 4;
             this.tbxVolt.Text = "1.8";
             this.tbxVolt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxVolt.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // tbxPoint
             // 
@@ -259,6 +267,7 @@
             this.tbxPoint.TabIndex = 5;
             this.tbxPoint.Text = "10";
             this.tbxPoint.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxPoint.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // cbxReg4
             // 
@@ -355,7 +364,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(220, 289);
+            this.label7.Location = new System.Drawing.Point(201, 230);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(113, 13);
             this.label7.TabIndex = 35;
@@ -368,7 +377,7 @@
             this.cbbMethod.Items.AddRange(new object[] {
             "Normal",
             "Extended"});
-            this.cbbMethod.Location = new System.Drawing.Point(357, 286);
+            this.cbbMethod.Location = new System.Drawing.Point(338, 227);
             this.cbbMethod.Name = "cbbMethod";
             this.cbbMethod.Size = new System.Drawing.Size(121, 21);
             this.cbbMethod.TabIndex = 37;
@@ -437,6 +446,12 @@
             // 
             // Mipi_Panel
             // 
+            this.Mipi_Panel.Controls.Add(this.label13);
+            this.Mipi_Panel.Controls.Add(this.tbx_width);
+            this.Mipi_Panel.Controls.Add(this.label8);
+            this.Mipi_Panel.Controls.Add(this.tbx_burst);
+            this.Mipi_Panel.Controls.Add(this.cbx_loop);
+            this.Mipi_Panel.Controls.Add(this.btnCheck);
             this.Mipi_Panel.Controls.Add(this.label3);
             this.Mipi_Panel.Controls.Add(this.tbxDuty);
             this.Mipi_Panel.Controls.Add(this.label12);
@@ -499,7 +514,35 @@
             this.Mipi_Panel.Size = new System.Drawing.Size(537, 455);
             this.Mipi_Panel.TabIndex = 43;
             this.Mipi_Panel.TabStop = false;
-            this.Mipi_Panel.Text = "Mipi Config Panel";
+            this.Mipi_Panel.Text = "     ";
+            // 
+            // tbx_burst
+            // 
+            this.tbx_burst.Location = new System.Drawing.Point(472, 286);
+            this.tbx_burst.Name = "tbx_burst";
+            this.tbx_burst.Size = new System.Drawing.Size(49, 20);
+            this.tbx_burst.TabIndex = 71;
+            // 
+            // cbx_loop
+            // 
+            this.cbx_loop.AutoSize = true;
+            this.cbx_loop.Location = new System.Drawing.Point(446, 263);
+            this.cbx_loop.Name = "cbx_loop";
+            this.cbx_loop.Size = new System.Drawing.Size(75, 17);
+            this.cbx_loop.TabIndex = 70;
+            this.cbx_loop.Text = "Loop MIPI";
+            this.cbx_loop.UseVisualStyleBackColor = true;
+            this.cbx_loop.CheckedChanged += new System.EventHandler(this.cbxTrgigger_CheckedChanged);
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.Location = new System.Drawing.Point(57, 189);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(107, 22);
+            this.btnCheck.TabIndex = 69;
+            this.btnCheck.Text = "Check Value";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // label3
             // 
@@ -509,7 +552,6 @@
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 67;
             this.label3.Text = "Duty cycle";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // tbxDuty
             // 
@@ -519,6 +561,7 @@
             this.tbxDuty.TabIndex = 66;
             this.tbxDuty.Text = "0.5";
             this.tbxDuty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxDuty.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // label12
             // 
@@ -537,6 +580,7 @@
             this.tbxShift.TabIndex = 64;
             this.tbxShift.Text = "0";
             this.tbxShift.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxShift.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // groupBox1
             // 
@@ -747,6 +791,31 @@
             this.statusStrip1.TabIndex = 45;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(421, 290);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(51, 13);
+            this.label8.TabIndex = 72;
+            this.label8.Text = "Burst (us)";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(418, 316);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 13);
+            this.label13.TabIndex = 74;
+            this.label13.Text = "Width (us)";
+            // 
+            // tbx_width
+            // 
+            this.tbx_width.Location = new System.Drawing.Point(472, 312);
+            this.tbx_width.Name = "tbx_width";
+            this.tbx_width.Size = new System.Drawing.Size(49, 20);
+            this.tbx_width.TabIndex = 73;
+            // 
             // Mipi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -838,5 +907,11 @@
         private System.Windows.Forms.TextBox tbxShift;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbxDuty;
+        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.CheckBox cbx_loop;
+        private System.Windows.Forms.TextBox tbx_burst;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbx_width;
+        private System.Windows.Forms.Label label8;
     }
 }

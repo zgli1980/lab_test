@@ -486,7 +486,7 @@ namespace Bench_Test
                             _E4438C.SetPower(0);
                             _E4438C.SetOutput(Output.ON);
 
-                            List<double> FreqList = new List<double>(TestSetting.LOSS_SRC.Keys);
+                            List<double> FreqList = new List<double>(TestSetting.LOSS_SRC_ROLL.Keys);
                             FreqList.Sort();
 
                             foreach (double dblFreq in FreqList)

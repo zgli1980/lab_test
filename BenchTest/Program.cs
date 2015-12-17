@@ -111,7 +111,8 @@ namespace Bench_Test
                 double tmpFreq;
                 string[] content;
                 /////////////////////////////////////////////////////////////
-                int ParameterIndentify = 17 + 5 + 4;
+                //// 2015012015 add Linear GMSK LB/HB, that is 4
+                int ParameterIndentify = 17 + 5 + 4 + 4;
 
                 #endregion *** Variable Define ***
 
@@ -291,6 +292,30 @@ namespace Bench_Test
                         ParameterIndentify--;
                     }
                     #endregion  EVDO Setting
+
+                    #region  Linear_GMSK_LB Setting
+                    if (line.Contains("--- Linear_GMSK_LB ---"))
+                    {
+                        while (!(line = srParameter.ReadLine()).Contains("---"))
+                        {
+                            content = line.Split(',');
+                            TestSetting.SETTING_LGMSK_LB.Add(content[0], double.Parse(content[1]));
+                        }
+                        ParameterIndentify--;
+                    }
+                    #endregion  Linear GMSK Setting
+
+                    #region  Linear GMSK_HB Setting
+                    if (line.Contains("--- Linear_GMSK_HB ---"))
+                    {
+                        while (!(line = srParameter.ReadLine()).Contains("---"))
+                        {
+                            content = line.Split(',');
+                            TestSetting.SETTING_LGMSK_HB.Add(content[0], double.Parse(content[1]));
+                        }
+                        ParameterIndentify--;
+                    }
+                    #endregion Linear GMSK Setting
 
 
                     if (line.Contains("--- Frequency List ---"))
@@ -503,6 +528,50 @@ namespace Bench_Test
                     }
                     #endregion
 
+                    #region LCW LB Frequency list
+                    if (line.Contains("--- LCW LB ---"))
+                    {
+                        while (!(line = srParameter.ReadLine()).Contains("---"))
+                        {
+                            tmpFreq = double.Parse(line);
+                            if (!TestSetting.FREQ_LCW_LB.ContainsKey(tmpFreq)) TestSetting.FREQ_LCW_LB.Add(tmpFreq, 0.0);
+                            if (!TestSetting.LOSS_SRC.ContainsKey(tmpFreq)) TestSetting.LOSS_SRC.Add(tmpFreq, 0.0);
+                            if (!TestSetting.LOSS_SRC_ROLL.ContainsKey(tmpFreq)) TestSetting.LOSS_SRC_ROLL.Add(tmpFreq, 0.0);
+                            if (!TestSetting.LOSS_MSR_POUT.ContainsKey(tmpFreq)) TestSetting.LOSS_MSR_POUT.Add(tmpFreq, 0.0);
+                            if (!TestSetting.LOSS_MSR_THROUGH.ContainsKey(tmpFreq)) TestSetting.LOSS_MSR_THROUGH.Add(tmpFreq, 0.0);
+                            //Harmonic
+                            for (int i = 2; i <= 6; i++)
+                            {
+                                if (!TestSetting.LOSS_SRC_ROLL.ContainsKey(tmpFreq * i)) TestSetting.LOSS_SRC_ROLL.Add(tmpFreq * i, 0.0);
+                                if (!TestSetting.LOSS_MSR_FILTER_LB.ContainsKey(tmpFreq * i)) TestSetting.LOSS_MSR_FILTER_LB.Add(tmpFreq * i, 0.0);
+                            }
+                        }
+                        ParameterIndentify--;
+                    }
+                    #endregion
+
+                    #region LCW HB Frequency list
+                    if (line.Contains("--- LCW HB ---"))
+                    {
+                        while (!(line = srParameter.ReadLine()).Contains("---"))
+                        {
+                            tmpFreq = double.Parse(line);
+                            if (!TestSetting.FREQ_LCW_HB.ContainsKey(tmpFreq)) TestSetting.FREQ_LCW_HB.Add(tmpFreq, 0.0);
+                            if (!TestSetting.LOSS_SRC.ContainsKey(tmpFreq)) TestSetting.LOSS_SRC.Add(tmpFreq, 0.0);
+                            if (!TestSetting.LOSS_SRC_ROLL.ContainsKey(tmpFreq)) TestSetting.LOSS_SRC_ROLL.Add(tmpFreq, 0.0);
+                            if (!TestSetting.LOSS_MSR_POUT.ContainsKey(tmpFreq)) TestSetting.LOSS_MSR_POUT.Add(tmpFreq, 0.0);
+                            if (!TestSetting.LOSS_MSR_THROUGH.ContainsKey(tmpFreq)) TestSetting.LOSS_MSR_THROUGH.Add(tmpFreq, 0.0);
+                            //Harmonic
+                            for (int i = 2; i <= 3; i++)
+                            {
+                                if (!TestSetting.LOSS_SRC_ROLL.ContainsKey(tmpFreq * i)) TestSetting.LOSS_SRC_ROLL.Add(tmpFreq * i, 0.0);
+                                if (!TestSetting.LOSS_MSR_FILTER_HB.ContainsKey(tmpFreq * i)) TestSetting.LOSS_MSR_FILTER_HB.Add(tmpFreq * i, 0.0);
+                            }
+                        }
+                        ParameterIndentify--;
+                    }
+                    #endregion
+
                     if (!line.Contains("---"))
                         line = srParameter.ReadLine();
                     else if (line.Contains("--- The End ---"))
@@ -667,6 +736,8 @@ namespace Bench_Test
         public const string MODE_LTEFDD_HB = "LTEFDD(HB)";
         public const string MODE_CDMA = "CDMA";
         public const string MODE_EVDO = "EVDO";
+        public const string MODE_LCW_LB = "LCW_LB";
+        public const string MODE_LCW_HB = "LCW_HB";
 
         public const int MaxTestItem = 500;
 
@@ -696,6 +767,8 @@ namespace Bench_Test
         public static Dictionary<string, double> SETTING_LTEFDD_HB = new Dictionary<string, double>();
         public static Dictionary<string, double> SETTING_CDMA = new Dictionary<string, double>();
         public static Dictionary<string, double> SETTING_EVDO = new Dictionary<string, double>();
+        public static Dictionary<string, double> SETTING_LGMSK_LB = new Dictionary<string, double>();
+        public static Dictionary<string, double> SETTING_LGMSK_HB = new Dictionary<string, double>();
 
         public static Dictionary<double, double> FREQ_CW_LB = new Dictionary<double, double>();
         public static Dictionary<double, double> FREQ_CW_HB = new Dictionary<double, double>();
@@ -709,6 +782,8 @@ namespace Bench_Test
         public static Dictionary<double, double> FREQ_LTEFDD_HB = new Dictionary<double, double>();
         public static Dictionary<double, double> FREQ_CDMA = new Dictionary<double, double>();
         public static Dictionary<double, double> FREQ_EVDO = new Dictionary<double, double>();
+        public static Dictionary<double, double> FREQ_LCW_LB = new Dictionary<double, double>();
+        public static Dictionary<double, double> FREQ_LCW_HB = new Dictionary<double, double>();
 
         public static Dictionary<double, double> LOSS_SRC = new Dictionary<double, double>();
         public static Dictionary<double, double> LOSS_SRC_ROLL = new Dictionary<double, double>();
@@ -728,6 +803,10 @@ namespace Bench_Test
         public static double LEVEL_STOP;
         public static double LEVEL_STEP;
 
+        public static int MIPI_BURST;
+        public static int MIPI_WIDTH;
+
 
     }
+
 }
