@@ -544,11 +544,10 @@ namespace Bench_Test
             }
 
             #endregion Intialize instruments
-        }
-  
+        }  
         private void SweepTest_Load(object sender, EventArgs e)
         {
-            lblCopyRight.Text = "Copyright @ 2011 Vanchip Rev:2015-12-17";
+            lblCopyRight.Text = "Copyright @ 2011 Vanchip Rev:2015-12-18";
             this.Text = "SweepTest *** " + Program.Location.ToString();
 
             #region *** Read Loss Comp Data ***
@@ -751,7 +750,7 @@ namespace Bench_Test
             #endregion *** Control Enable ***
 
         }
-
+        
 
         private void dgvSweepResult_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
@@ -2048,7 +2047,7 @@ namespace Bench_Test
 
                         
                         lblPin_Vramp.Text = "Vramp Voltage (V)";
-                        lblPin_Vramp.Text = "RF Pin(dBm)";
+                        //lblPin_Vramp.Text = "RF Pin(dBm)";
                         lblStep.Text = "GMSK Target Power (dBm)";
 
                         tbxVCC.Text = TestSetting.LEVEL_VCC.ToString();
@@ -2147,7 +2146,7 @@ namespace Bench_Test
 
 
                         lblPin_Vramp.Text = "Vramp Voltage (V)";
-                        lblPin_Vramp.Text = "RF Pin(dBm)";
+                        //lblPin_Vramp.Text = "RF Pin(dBm)";
                         lblStep.Text = "GMSK Target Power (dBm)";
 
                         tbxVCC.Text = TestSetting.LEVEL_VCC.ToString();
@@ -14304,7 +14303,8 @@ namespace Bench_Test
             SetVCC_New(TestSetting.LEVEL_VCC, 3000);
             SetGPCTRL(TestSetting.LEVEL_GPCTRL);
             //SetTXEnable(TestSetting.LEVEL_TXEN);
-            //SetVramp(1.8);
+            //SetVramp(TestSetting.LEVEL_PIN_VRAMP);
+            SetVEN(Arb_Channel.Channel_2, TestSetting.LEVEL_PIN_VRAMP, true);
 
             _E4438C.Initialize();
             //_E4438C.Mode_Initialize(Modulation.CW_BURST);
@@ -14371,10 +14371,10 @@ namespace Bench_Test
                     double GMSK_Pout = 0;
                     double GMSK_Pin = 0;
                     double GMSK_Icc = 0;
-                    double dblPin = -10; // Pin_Start;
+                    double dblPin = 3; // Pin_Start;
 
                     _E4438C.SetFrequency(dblFreq);
-                    _E4438C.SetPower(TestSetting.LEVEL_PIN_VRAMP + TestSetting.LOSS_SRC[dblFreq]); 
+                    _E4438C.SetPower( dblPin+ TestSetting.LOSS_SRC[dblFreq]); 
                     _E4438C.SetOutput(Output.ON);
 
                     // Frequency
@@ -14394,9 +14394,9 @@ namespace Bench_Test
                     while (GMSK_Pout <= PoutLL || GMSK_Pout >= PoutUL)
                     {
                         if (loop++ > 15) break;
-                        if ((dblPin = dblPin + dblPout_Target - GMSK_Pout) > 8)
+                        if ((dblPin = dblPin + dblPout_Target - GMSK_Pout) > 11)
                         {
-                            dblPin = 8;
+                            dblPin = 11;
                             _E4438C.SetPower(dblPin + TestSetting.LOSS_SRC[dblFreq]);
                             _PM_N1913A.Configure__Average_Pulse_Power_with_Duty_Cycle(dblFreq, 25, 256);
                             util.Wait(intDelay_PowerMeter * intDelay_N1913A_Count);

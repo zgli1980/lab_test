@@ -547,8 +547,11 @@ namespace Bench_Test
 
             bool extWrite = false;
 
-            TestSetting.MIPI_BURST = int.Parse(tbx_burst.Text);
-            TestSetting.MIPI_WIDTH = int.Parse(tbx_width.Text);
+            if (bln_loop)
+            {
+                TestSetting.MIPI_BURST = int.Parse(tbx_burst.Text);
+                TestSetting.MIPI_WIDTH = int.Parse(tbx_width.Text);
+            }
 
             #endregion Variable Define
 
